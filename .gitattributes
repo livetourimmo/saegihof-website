@@ -1,0 +1,7 @@
+# Einheitliche Zeilenenden im Repository, unabhängig vom Betriebssystem
+* text=auto eol=lf
+
+# Binärdateien nicht anfassen
+*.png binary
+*.webp binary
+*.woff2 binary
