@@ -2,12 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 
-const NAVIGATOR_URL = 'https://lvt-gamma.vercel.app/immobilie/S%C3%A4gihof?sort=source';
+const NAVIGATOR_URL = 'https://lvt-gamma.vercel.app/embed/immobilie/S%C3%A4gihof';
 
 /**
  * Externer Wohnungsnavigator von liveTour. Die eingebettete Anwendung meldet
  * ihre Höhe per postMessage, damit der Rahmen ohne eigene Bildlaufleiste
- * mitwächst. Logik unverändert aus der ursprünglichen wohnungen.html.
+ * mitwächst.
  */
 export default function Wohnungsnavigator() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -34,12 +34,14 @@ export default function Wohnungsnavigator() {
   }, []);
 
   return (
-    <iframe
-      ref={iframeRef}
-      src={NAVIGATOR_URL}
-      title="Immobiliennavigator"
-      style={{ width: '100%', border: 0, minHeight: '760px' }}
-      loading="lazy"
-    />
+    <div className="navigator-frame reveal">
+      <iframe
+        ref={iframeRef}
+        id="lvt-axo-S-gihof"
+        src={NAVIGATOR_URL}
+        title="Immobiliennavigator"
+        loading="lazy"
+      />
+    </div>
   );
 }

@@ -31,3 +31,8 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Logo-Quelldateien (13 MB). Die ausgelieferten Fassungen liegen abgeleitet
+# unter public/img/ und app/. Bewusst nicht im Repo, damit die Rohdateien
+# die Git-Historie nicht dauerhaft aufblähen — bei Bedarf jederzeit aufnehmbar.
+/Korrektes Logo/

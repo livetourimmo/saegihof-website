@@ -24,13 +24,13 @@ export default function Startseite() {
 
         <div className="hero-content">
           <div className="hero-content-left">
-            <div className="eyebrow reveal" style={{ color: 'var(--gold-light)' }}>
+            <div className="eyebrow reveal">
               <span
                 style={{
                   display: 'block',
                   width: '24px',
                   height: '1px',
-                  background: 'var(--gold-light)',
+                  background: 'currentColor',
                   flexShrink: 0,
                 }}
               ></span>
@@ -69,34 +69,6 @@ export default function Startseite() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <div className="section-divider"></div>
-
-      {/* ══ DAS PROJEKT ══ */}
-      <section className="content-section" id="projekt">
-        <div className="section-text">
-          <div className="eyebrow reveal">Das Projekt</div>
-          <h2 className="reveal d1">
-            Ein Zuhause mit<br />Raum zum Leben.
-          </h2>
-          <p className="body-text reveal d2">
-            Der Sägihof wird von vier Häusern geprägt, die sich um einen gemeinsamen, begrünten
-            Innenhof anordnen. Mit Spielplatz, Liegewiese und viel Grün entsteht ein Ort, an dem
-            sich das Leben im Sägihof abspielt.
-          </p>
-          <p className="body-text reveal d2">
-            Unterirdisch verbindet die gemeinsame Einstellhalle die vier Häuser.
-          </p>
-          <Link href="/projekt" className="btn-link reveal d3">
-            Das Projekt entdecken
-            <PfeilIcon />
-          </Link>
-        </div>
-        <div className="section-image reveal d1">
-          {/* eslint-disable-next-line @next/next/no-img-element -- Zuschnitt über CSS. */}
-          <img src="/img/aussicht.webp" alt="Sägihof — Aussenansicht mit begrüntem Innenhof" />
         </div>
       </section>
 
@@ -154,6 +126,34 @@ export default function Startseite() {
 
       <div className="section-divider"></div>
 
+      {/* ══ DAS PROJEKT ══ */}
+      <section className="content-section" id="projekt">
+        <div className="section-text">
+          <div className="eyebrow reveal">Das Projekt</div>
+          <h2 className="reveal d1">
+            Ein Zuhause mit<br />Raum zum Leben.
+          </h2>
+          <p className="body-text reveal d2">
+            Der Sägihof wird von vier Häusern geprägt, die sich um einen gemeinsamen, begrünten
+            Innenhof anordnen. Mit Spielplatz, Liegewiese und viel Grün entsteht ein Ort, an dem
+            sich das Leben im Sägihof abspielt.
+          </p>
+          <p className="body-text reveal d2">
+            Unterirdisch verbindet die gemeinsame Einstellhalle die vier Häuser.
+          </p>
+          <Link href="/projekt" className="btn-link reveal d3">
+            Das Projekt entdecken
+            <PfeilIcon />
+          </Link>
+        </div>
+        <div className="section-image reveal d1">
+          {/* eslint-disable-next-line @next/next/no-img-element -- Zuschnitt über CSS. */}
+          <img src="/img/aussicht.webp" alt="Sägihof — Aussenansicht mit begrüntem Innenhof" />
+        </div>
+      </section>
+
+      <div className="section-divider"></div>
+
       {/* ══ LAGE ══ */}
       <section className="content-section reverse" id="lage">
         <div className="section-text">
@@ -192,7 +192,7 @@ export default function Startseite() {
       <Kontakt
         titel={<>Interesse an<br />einer Wohnung?</>}
         variante="wohnung"
-        personen={['BW', 'HV', 'JG']}
+        personen={['BW', 'HV']}
         quelle="startseite"
       />
 

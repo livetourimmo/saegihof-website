@@ -34,9 +34,13 @@ export default function Navbar({ aktiv }: { aktiv: string }) {
     <>
       <nav id="navbar">
         <Link href="/" className="nav-logo">
+          {/*
+            Hauptlogo (dunkle Fassung). Die helle Fassung fuer dunkle
+            Hintergruende liegt als /img/logo-hell.png bereit.
+          */}
           {/* eslint-disable-next-line @next/next/no-img-element -- Die Grösse steuert das CSS über height/width:auto. */}
           <img
-            src="/img/logo.png"
+            src="/img/logo-dunkel.svg"
             alt="Sägihof Therwil"
             style={logoFehlt ? { display: 'none' } : undefined}
             onError={() => setLogoFehlt(true)}

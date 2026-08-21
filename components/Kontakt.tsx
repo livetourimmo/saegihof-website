@@ -27,14 +27,6 @@ const PERSONEN: Record<string, Person> = {
     telefonAnzeige: '+41 76 269 78 13',
     mail: 'h.vierheilig@whimmo.ch',
   },
-  JG: {
-    initialen: 'JG',
-    name: 'Jovanna Grabanica',
-    rolle: 'Marketing / Verkauf',
-    telefon: '+41765640543',
-    telefonAnzeige: '+41 76 564 05 43',
-    mail: 'j.grabanica@whimmo.ch',
-  },
 };
 
 function PersonKarte({ person, verzoegerung }: { person: Person; verzoegerung: string }) {
@@ -64,9 +56,8 @@ function PersonKarte({ person, verzoegerung }: { person: Person; verzoegerung: s
  *
  * @param titel     Überschrift — pro Seite unterschiedlich formuliert.
  * @param variante  Steuert das zusätzliche Auswahlfeld im Formular.
- * @param personen  Kürzel der Ansprechpersonen. Die Startseite führt drei,
- *                  alle übrigen Seiten zwei Personen — wie in den
- *                  ursprünglichen HTML-Dateien.
+ * @param personen  Kürzel der Ansprechpersonen — auf allen Seiten dieselben
+ *                  zwei Personen.
  * @param quelle    Wird mitgespeichert, damit später nachvollziehbar ist,
  *                  von welcher Seite eine Anfrage stammt.
  */
