@@ -124,6 +124,10 @@ nav#navbar.scrolled {
   transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.page-start .nav-logo {
+  --logo-groesse: 168px;
+}
+
 nav#navbar.scrolled .nav-logo {
   --logo-groesse: 46px;
 }
@@ -2194,9 +2198,21 @@ h1 {
   .nav-logo {
     --logo-groesse: 96px;
   }
+
+  .page-start .nav-logo {
+    --logo-groesse: 120px;
+  }
 }
 
 @media (max-width: 900px) {
+  .nav-logo {
+    --logo-groesse: 76px;
+  }
+
+  .page-start .nav-logo {
+    --logo-groesse: 92px;
+  }
+
   .hero-content {
     grid-template-columns: 1fr;
     padding: 0 1.5rem 3.5rem;
@@ -2370,6 +2386,10 @@ h1 {
 
   .nav-logo {
     --logo-groesse: 76px;
+  }
+
+  .page-start .nav-logo {
+    --logo-groesse: 114px;
   }
 
   .nav-links,
