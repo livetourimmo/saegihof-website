@@ -86,21 +86,57 @@ nav#navbar.scrolled {
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+  --logo-groesse: 112px;
+  position: relative;
+  width: 46px;
+  height: 46px;
   flex-shrink: 0;
+  text-decoration: none;
+}
+
+/* Der untere Teil des Stempels liegt auf dem Hero-Foto. Ohne Untergrund
+   verschwindet der dunkelgrüne Schriftzug dort je nach Bildausschnitt —
+   deshalb liegt unter der Marke eine cremefarbene Kreisfläche, die den
+   Ring der Marke von innen ausfüllt und mit ihr mitwächst. */
+.nav-logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--logo-groesse);
+  height: var(--logo-groesse);
+  border-radius: 50%;
+  background: var(--cream);
+  transform: scale(0.962);
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-logo img {
-  height: 46px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--logo-groesse);
   width: auto;
+  /* Hebt das globale img { max-width: 100% } auf — sonst stutzt der
+     schmale Elternrahmen die Marke auf seine Breite zurecht. */
+  max-width: none;
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav#navbar.scrolled .nav-logo {
+  --logo-groesse: 46px;
 }
 
 .nav-logo-fallback {
   display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   flex-direction: column;
   gap: 2px;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -2154,6 +2190,10 @@ h1 {
   .page-start nav#navbar {
     padding: 1.125rem 2rem;
   }
+
+  .nav-logo {
+    --logo-groesse: 96px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2326,6 +2366,10 @@ h1 {
   /* Muss die staerkere Regel aus dem 1100er-Block ueberschreiben. */
   .page-start nav#navbar {
     padding: 1.25rem 1.5rem;
+  }
+
+  .nav-logo {
+    --logo-groesse: 76px;
   }
 
   .nav-links,
