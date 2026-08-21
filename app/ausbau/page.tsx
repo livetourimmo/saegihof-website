@@ -31,7 +31,7 @@ export default function AusbauSeite() {
         </div>
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
-          <div className="page-hero-eyebrow">Sägihof · Therwil</div>
+          <div className="page-hero-eyebrow">Sägeweg · Therwil</div>
           <h1>Ausbau</h1>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function AusbauSeite() {
             </h2>
           </div>
           <div>
-            <p className="body-text reveal d1" style={{ color: 'var(--sage)' }}>
+            <p className="body-text reveal d1">
               Für den individuellen Ausbau stehen grosszügige Käuferbudgets zur Verfügung. Damit
               bleibt bei der Wahl von Küche, Bad und Bodenbelägen genügend Spielraum für
               persönliche Wünsche.

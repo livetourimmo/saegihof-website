@@ -56,7 +56,7 @@ export default function LageSeite() {
         </div>
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
-          <div className="page-hero-eyebrow">Sägihof · Therwil</div>
+          <div className="page-hero-eyebrow">Sägeweg · Therwil</div>
           <h1>
             Therwil. Nah an Basel,<br />zuhause im Leimental.
           </h1>
