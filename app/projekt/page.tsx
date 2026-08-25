@@ -2,12 +2,18 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
+import Plandownload from '@/components/Plandownload';
 
 export const metadata: Metadata = {
   title: 'Der Sägihof — Über das Projekt',
   description:
     'Vier Häuser, ein gemeinsamer Hof. Erfahren Sie mehr über das Wohnensemble Sägihof in Therwil — Umgebungsplan, Tiefgarage und Konzept.',
 };
+
+/* Die Pläne liegen zusätzlich als PDF bereit — Bild und Download zeigen
+   dieselbe Datei, damit der Plan auch in voller Auflösung lesbar bleibt. */
+const UMGEBUNGSPLAN_PDF = '/plaene/saegihof-umgebungsplan.pdf';
+const TIEFGARAGENPLAN_PDF = '/plaene/saegihof-tiefgaragenplan.pdf';
 
 export default function ProjektSeite() {
   return (
@@ -55,19 +61,29 @@ export default function ProjektSeite() {
 
       <div className="section-divider"></div>
 
-      {/* ══ UMGEBUNGSPLAN ══ */}
+      {/*
+        ══ UMGEBUNGSPLAN ══
+        .reverse dreht die Spalten: der Plan steht rechts, der Text mit dem
+        PDF-Download links.
+      */}
       <section className="content-section reverse" id="umgebungsplan">
-        <div className="plan-placeholder reveal">
-          <div className="plan-placeholder-inner">
-            <svg className="plan-placeholder-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect x="6" y="8" width="36" height="32" rx="2" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M6 16h36M16 8v32M6 24h10M6 32h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              <circle cx="33" cy="30" r="5" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M33 27v3l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <p className="plan-placeholder-label">Umgebungsplan folgt</p>
-          </div>
-        </div>
+        <figure className="plan-figur reveal">
+          <a
+            className="plan-figur-bild"
+            href={UMGEBUNGSPLAN_PDF}
+            target="_blank"
+            rel="noopener"
+            aria-label="Umgebungsplan in voller Auflösung öffnen (PDF)"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- Plandarstellung, Grösse über CSS. */}
+            <img
+              src="/img/umgebungsplan.webp"
+              alt="Umgebungsplan Sägihof Therwil — die vier Häuser am Sägeweg und an der Oberwilerstrasse mit begrüntem Innenhof"
+              loading="lazy"
+            />
+            <span className="plan-figur-hinweis">Plan vergrössern</span>
+          </a>
+        </figure>
         <div className="section-text">
           <div className="eyebrow reveal">Umgebungsplan</div>
           <h2 className="reveal d1">
@@ -84,6 +100,12 @@ export default function ProjektSeite() {
             Zugangswege, Vorplätze und Veloabstellflächen fügen sich in die Umgebungsgestaltung ein
             und schaffen klare Verbindungen zwischen den einzelnen Gebäuden.
           </p>
+          <Plandownload
+            href={UMGEBUNGSPLAN_PDF}
+            titel="Umgebungsplan"
+            dateiname="saegihof-umgebungsplan.pdf"
+            groesse="PDF · 9 MB"
+          />
         </div>
       </section>
 
@@ -107,18 +129,30 @@ export default function ProjektSeite() {
             Autoverkehr und kann dem entsprechen, was den Sägihof prägt: viel Grün und Raum
             zwischen den Häusern.
           </p>
+          <Plandownload
+            href={TIEFGARAGENPLAN_PDF}
+            titel="Tiefgaragenplan"
+            dateiname="saegihof-tiefgaragenplan.pdf"
+            groesse="PDF · 0.9 MB"
+          />
         </div>
-        <div className="plan-placeholder reveal d1">
-          <div className="plan-placeholder-inner">
-            <svg className="plan-placeholder-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect x="6" y="8" width="36" height="32" rx="2" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M6 16h36M16 8v32M6 24h10M6 32h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              <rect x="22" y="20" width="14" height="8" rx="1" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M24 28v4M34 28v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <p className="plan-placeholder-label">Tiefgaragenplan folgt</p>
-          </div>
-        </div>
+        <figure className="plan-figur reveal d1">
+          <a
+            className="plan-figur-bild"
+            href={TIEFGARAGENPLAN_PDF}
+            target="_blank"
+            rel="noopener"
+            aria-label="Tiefgaragenplan in voller Auflösung öffnen (PDF)"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- Plandarstellung, Grösse über CSS. */}
+            <img
+              src="/img/tiefgaragenplan.webp"
+              alt="Tiefgaragenplan Sägihof Therwil — Einstellhalle mit den Parkfeldern der Häuser A, B1, B2 und B3, Besucherplätzen und Veloraum"
+              loading="lazy"
+            />
+            <span className="plan-figur-hinweis">Plan vergrössern</span>
+          </a>
+        </figure>
       </section>
 
       <div className="section-divider"></div>

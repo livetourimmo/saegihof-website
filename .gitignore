@@ -36,3 +36,8 @@ desktop.ini
 # unter public/img/ und app/. Bewusst nicht im Repo, damit die Rohdateien
 # die Git-Historie nicht dauerhaft aufblähen — bei Bedarf jederzeit aufnehmbar.
 /Korrektes Logo/
+
+# Quelldateien der Pläne, Moodboard-Bilder und des Drohnenvideos (rund 380 MB).
+# Ausgeliefert werden die abgeleiteten Fassungen unter public/. Wie bei den
+# Logo-Rohdaten bewusst nicht im Repo, damit die Historie schlank bleibt.
+/Neue Dokumente/

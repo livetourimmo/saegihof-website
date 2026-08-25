@@ -12,8 +12,10 @@ create table if not exists public.kontaktanfragen (
   email       text not null,
   telefon     text,
 
-  -- Zusatzfeld je nach Formularvariante: Wohnungstyp (Start-, Projekt- und
+  -- Zusatzfeld je nach Formularvariante: Wohnungstypen (Start-, Projekt- und
   -- Wohnungsseite) oder Thema (Ausbauseite). Die Lageseite hat kein Zusatzfeld.
+  -- Bei der Wohnungsauswahl sind mehrere Typen moeglich; sie stehen als eine
+  -- durch Komma getrennte Zeile in der Spalte, z. B. "3.5-Zimmer, Attikawohnung".
   wohnung     text,
   thema       text,
 

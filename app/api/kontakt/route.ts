@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { supabaseServer } from '@/lib/supabase';
+import { baueBenachrichtigung } from '@/lib/kontaktmail';
 
 export const runtime = 'nodejs';
 
@@ -18,7 +19,8 @@ const AnfrageSchema = z.object({
     .email({ error: 'Bitte geben Sie eine gültige E-Mail-Adresse an.' })
     .max(200, 'Die E-Mail-Adresse ist zu lang.'),
   telefon: z.string().trim().max(60, 'Die Telefonnummer ist zu lang.').nullish(),
-  wohnung: z.string().trim().max(80).nullish(),
+  // Mehrere Wohnungstypen kommen als eine durch Komma getrennte Zeile an.
+  wohnung: z.string().trim().max(300, 'Die Wohnungsauswahl ist zu lang.').nullish(),
   thema: z.string().trim().max(80).nullish(),
   nachricht: z
     .string({ error: 'Bitte geben Sie eine Nachricht ein.' })
@@ -57,14 +59,6 @@ function fehlermeldung(fehler: z.ZodError): string {
   return /[a-zäöüß]/i.test(problem.message) && /[ÄÖÜäöüß]|Bitte|Die |Der /.test(problem.message)
     ? problem.message
     : (PFLICHTFELD_MELDUNG[feld] ?? 'Bitte prüfen Sie Ihre Eingaben.');
-}
-
-function escapeHtml(wert: string) {
-  return wert
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 export async function POST(request: Request) {
@@ -131,28 +125,17 @@ export async function POST(request: Request) {
 
   if (apiKey && from && to) {
     try {
-      const zusatz = anfrage.wohnung
-        ? `<tr><td><strong>Wohnung</strong></td><td>${escapeHtml(anfrage.wohnung)}</td></tr>`
-        : anfrage.thema
-          ? `<tr><td><strong>Thema</strong></td><td>${escapeHtml(anfrage.thema)}</td></tr>`
-          : '';
+      const mail = baueBenachrichtigung(anfrage);
 
       await new Resend(apiKey).emails.send({
         from,
         to: to.split(',').map((adresse) => adresse.trim()),
+        // Antworten gehen direkt an die anfragende Person, nicht an die
+        // Absenderadresse der Webseite.
         replyTo: anfrage.email,
-        subject: `Neue Anfrage Sägihof — ${anfrage.name}`,
-        html: `
-          <h2 style="font-family:sans-serif">Neue Anfrage über die Webseite</h2>
-          <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse" cellpadding="6">
-            <tr><td><strong>Name</strong></td><td>${escapeHtml(anfrage.name)}</td></tr>
-            <tr><td><strong>E-Mail</strong></td><td>${escapeHtml(anfrage.email)}</td></tr>
-            ${anfrage.telefon ? `<tr><td><strong>Telefon</strong></td><td>${escapeHtml(anfrage.telefon)}</td></tr>` : ''}
-            ${zusatz}
-            ${anfrage.quelle ? `<tr><td><strong>Seite</strong></td><td>${escapeHtml(anfrage.quelle)}</td></tr>` : ''}
-          </table>
-          <p style="font-family:sans-serif;font-size:14px;white-space:pre-wrap">${escapeHtml(anfrage.nachricht)}</p>
-        `,
+        subject: mail.subject,
+        html: mail.html,
+        text: mail.text,
       });
 
       await supabaseServer()

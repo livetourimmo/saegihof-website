@@ -11,7 +11,19 @@ import { PfeilIcon } from './Icons';
  */
 export type FormularVariante = 'wohnung' | 'thema' | 'ohne';
 
-const WOHNUNGEN = ['2.5-Zimmer', '3.5-Zimmer', '4.5-Zimmer', 'Attikawohnung'];
+/**
+ * Wohnungstypen zur Mehrfachauswahl. Interessenten haben selten genau eine
+ * Wohnung im Blick — häufiger zwei bis drei Grundrisse, die in Frage kommen.
+ * Deshalb Kontrollkästchen statt einer Auswahlliste.
+ */
+const WOHNUNGEN = [
+  '2.5-Zimmer',
+  '3.5-Zimmer',
+  '4.5-Zimmer',
+  'Attikawohnung',
+  'Noch unentschlossen',
+];
+
 const THEMEN = ['Käuferbudgets', 'Virtueller Rundgang', 'Materialwahl', 'Allgemeine Frage'];
 
 type Status = 'bereit' | 'sendet' | 'gesendet' | 'fehler';
@@ -33,6 +45,10 @@ export default function Kontaktformular({
 
     const daten = new FormData(event.currentTarget);
 
+    // Aus den angekreuzten Kästchen wird eine Zeile — so bleibt das Feld in
+    // Datenbank und Benachrichtigungsmail unverändert lesbar.
+    const wohnung = daten.getAll('wohnung').join(', ');
+
     try {
       const antwort = await fetch('/api/kontakt', {
         method: 'POST',
@@ -41,7 +57,7 @@ export default function Kontaktformular({
           name: daten.get('name'),
           email: daten.get('email'),
           telefon: daten.get('telefon') || null,
-          wohnung: daten.get('wohnung') || null,
+          wohnung: wohnung || null,
           thema: daten.get('thema') || null,
           nachricht: daten.get('nachricht'),
           quelle,
@@ -94,17 +110,20 @@ export default function Kontaktformular({
       </div>
 
       {variante === 'wohnung' && (
-        <div className="form-group">
-          <label htmlFor="f-wohnung">Interesse an Wohnung (optional)</label>
-          <div className="form-select-wrap">
-            <select id="f-wohnung" name="wohnung" defaultValue="">
-              <option value="">Bitte wählen</option>
-              {WOHNUNGEN.map((w) => (
-                <option key={w}>{w}</option>
-              ))}
-            </select>
+        /* Gruppe statt Feld: <fieldset> und <legend> verbinden die Beschriftung
+           mit allen Kästchen — sonst hörte eine Vorlesehilfe nur die einzelnen
+           Wohnungstypen ohne den Zusammenhang. */
+        <fieldset className="form-group form-fieldset">
+          <legend>Interesse an (Mehrfachauswahl möglich)</legend>
+          <div className="form-optionen">
+            {WOHNUNGEN.map((w) => (
+              <label key={w} className="form-option">
+                <input type="checkbox" name="wohnung" value={w} />
+                <span>{w}</span>
+              </label>
+            ))}
           </div>
-        </div>
+        </fieldset>
       )}
 
       {variante === 'thema' && (

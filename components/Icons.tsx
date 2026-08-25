@@ -36,3 +36,25 @@ export function PfeilIcon({ groesse = 15 }: { groesse?: number }) {
     </svg>
   );
 }
+
+/** Blatt mit Pfeil nach unten — für PDF-Downloads. */
+export function DownloadIcon({ groesse = 15 }: { groesse?: number }) {
+  return (
+    <svg width={groesse} height={groesse} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M4 1.75h5L12.25 5v9.25h-8.5V1.75Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+      <path d="M8.75 2v3.25H12" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      <path
+        d="M8 7.5v4m0 0L6.4 9.9M8 11.5l1.6-1.6"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

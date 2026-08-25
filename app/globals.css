@@ -957,6 +957,77 @@ h2 {
   pointer-events: none;
 }
 
+/* Mehrfachauswahl der Wohnungstypen. <fieldset> bringt einen eigenen
+   Rahmen und eigene Innenabstaende mit — beides wird zurueckgesetzt, damit
+   die Gruppe sich wie die uebrigen Formularfelder verhaelt. */
+.form-fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.form-fieldset legend {
+  padding: 0;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form-optionen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--stone);
+  border: 1px solid var(--stone);
+}
+
+/* Die letzte Option ("Noch unentschlossen") steht allein in der Schlusszeile
+   und nimmt deshalb beide Spalten ein. */
+.form-optionen .form-option:last-child {
+  grid-column: 1 / -1;
+}
+
+.form-option {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.875rem;
+  background: var(--white);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.form-option:hover {
+  background: var(--sage-pale);
+}
+
+.form-option input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  accent-color: var(--forest);
+  cursor: pointer;
+}
+
+/* Angekreuzte Option deutlich absetzen — sonst ist bei fuenf Kaestchen auf
+   einen Blick nicht erkennbar, was gewaehlt wurde. */
+.form-option:has(input:checked) {
+  background: var(--sage-pale);
+  color: var(--forest);
+}
+
+.form-option:has(input:focus-visible) {
+  outline: 2px solid var(--forest-mid);
+  outline-offset: -2px;
+}
+
 .form-check {
   display: flex;
   align-items: flex-start;
@@ -1219,37 +1290,123 @@ h1 {
   flex-shrink: 0;
 }
 
-.plan-placeholder {
+
+/* Plandarstellung (Umgebungs- und Tiefgaragenplan).
+   Anders als .section-image wird der Plan nicht beschnitten, sondern
+   vollstaendig eingepasst — ein angeschnittener Grundriss waere unbrauchbar.
+   Der Rahmen behaelt die Flaechenwirkung des frueheren Platzhalters. */
+/* Plandarstellung (Umgebungs- und Tiefgaragenplan). Der Plan füllt seine
+   Spalte vollflächig aus — wie .section-image bei den Fotos, damit die
+   Abschnitte dieselbe Kante halten. */
+.plan-figur {
   position: relative;
-  min-height: 480px;
   background: var(--stone-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+
+  /* Beide Pläne sind quadratisch, die Spalte ist halb so breit wie das
+     Fenster. Ist die Fläche mindestens so hoch wie breit, schneidet
+     object-fit: cover nur den weissen Rand seitlich weg statt den Plan
+     selbst — ohne diese Grenze fehlte auf breiten Bildschirmen rund ein
+     Drittel der Planhöhe. Ist die Textspalte höher, wächst die Fläche
+     ohnehin mit (align-items: stretch). */
+  min-height: max(520px, 50vw);
 }
 
-.plan-placeholder-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  padding: 2rem;
+.plan-figur-bild {
+  position: absolute;
+  inset: 0;
+  display: block;
+  text-decoration: none;
 }
 
-.plan-placeholder-icon {
-  width: 48px;
-  height: 48px;
-  color: var(--stone);
+.plan-figur-bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.plan-placeholder-label {
+.plan-figur-bild:hover img,
+.plan-figur-bild:focus-visible img {
+  transform: scale(1.03);
+}
+
+/* Hinweis, dass hinter dem Plan die PDF-Fassung liegt. Er blendet sich erst
+   bei Zeigergeraeten ein; auf Tastatur-Fokus ebenfalls, damit der Verweis
+   nicht unangekuendigt bleibt. */
+.plan-figur-hinweis {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
   font-family: var(--font-jost), sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--white);
+  background: var(--forest);
+  padding: 0.55rem 0.9rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+
+.plan-figur-bild:hover .plan-figur-hinweis,
+.plan-figur-bild:focus-visible .plan-figur-hinweis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PDF-Verweis in der Textspalte neben dem Plan. */
+.plan-download {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.9rem;
+  margin-top: 2.25rem;
+  padding: 0.9rem 1.5rem 0.9rem 1.1rem;
+  background: rgba(31, 59, 44, 0.04);
+  border: 1px solid rgba(31, 59, 44, 0.4);
+  color: var(--forest);
+  text-decoration: none;
+  transition: color 0.25s, background 0.25s, border-color 0.25s;
+}
+
+.plan-download:hover,
+.plan-download:focus-visible {
+  color: var(--white);
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.plan-download-icon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.plan-download-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.plan-download-titel {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.plan-download-meta {
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.7;
 }
 
 .page-hero-overlay {
@@ -1298,6 +1455,34 @@ h1 {
   width: 100%;
   min-height: 760px;
   border: 0;
+}
+
+/* Rueckfallebene unter dem Navigator — greift, wenn die eingebettete
+   Anwendung nicht laedt (etwa wegen Zugriffsschutz der Vorschau-Adresse). */
+.navigator-fallback {
+  margin-top: 1.25rem;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.navigator-fallback a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--forest);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 59, 44, 0.35);
+  padding-bottom: 1px;
+  transition: gap 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.navigator-fallback a:hover,
+.navigator-fallback a:focus-visible {
+  gap: 0.8rem;
+  color: var(--gold);
+  border-color: var(--gold);
 }
 
 .nav-filter-bar {
@@ -1618,11 +1803,27 @@ h1 {
   margin-bottom: 0;
 }
 
+/* Fussnote unter den Käuferbudgets. Der Abschnitt steht auf dunklem Grund,
+   deshalb ein gedämpftes Weiss statt der sonst üblichen Grautöne. */
+.budget-fussnote {
+  margin-top: 2rem;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(246, 242, 233, 0.6);
+  max-width: 720px;
+}
+
 .materialisierung-header .body-text {
   margin-bottom: 0;
 }
 
-.moodboard-placeholder {
+/* Moodboard — sechs Beispielbilder zu Böden, Küchen, Nasszellen, Wänden,
+   Armaturen und Details. Das Raster behält die Fugenoptik des früheren
+   Platzhalters; die Beschriftung sitzt als Band über dem unteren Bildrand,
+   damit sie auf hellen wie dunklen Aufnahmen lesbar bleibt. */
+.moodboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
@@ -1632,145 +1833,56 @@ h1 {
 }
 
 .moodboard-cell {
-  background: var(--stone-light);
-  display: flex;
-  align-items: flex-end;
-  padding: 1.25rem 1.5rem;
   position: relative;
   overflow: hidden;
-  transition: background 0.3s;
-}
-
-.moodboard-cell:nth-child(1) {
-  background: #D8D3CB;
-}
-
-.moodboard-cell:nth-child(2) {
-  background: #C9C3B8;
-}
-
-.moodboard-cell:nth-child(3) {
-  background: var(--sage-pale);
-}
-
-.moodboard-cell:nth-child(4) {
   background: var(--stone-light);
+  margin: 0;
 }
 
-.moodboard-cell:nth-child(5) {
-  background: #E2DDD5;
+.moodboard-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.moodboard-cell:nth-child(6) {
-  background: var(--gold-pale);
+.moodboard-cell:hover img {
+  transform: scale(1.04);
+}
+
+/* Farbverlauf unter der Beschriftung — ohne ihn verschwindet der Text auf
+   hellen Aufnahmen wie der Wand- oder Armaturenkachel. */
+.moodboard-cell::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(22, 40, 25, 0.72) 0%, rgba(22, 40, 25, 0) 100%);
+  pointer-events: none;
 }
 
 .moodboard-cell-label {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.25rem;
+  z-index: 1;
   font-family: var(--font-jost), sans-serif;
   font-size: 0.6rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  position: relative;
-  z-index: 1;
+  color: var(--white);
 }
 
-.moodboard-coming {
-  padding: 1.5rem 2rem;
-  background: var(--cream);
-  border: 1px solid var(--stone);
-  border-top: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.moodboard-coming-text {
-  font-family: var(--font-ibm-plex-sans), sans-serif;
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: var(--text-muted);
-}
-
-.moodboard-coming-badge {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.moodboard-coming-badge::before {
-  content: '';
-  display: block;
-  width: 5px;
-  height: 5px;
-  background: var(--gold);
-  border-radius: 50%;
-}
-
-#drohnenvideo {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  background: var(--forest-deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-#drohnenvideo::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 60%, rgba(42, 80, 58, 0.45) 0%, transparent 65%);
-}
-
-.video-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  text-align: center;
-}
-
-.video-play-btn {
-  width: 72px;
-  height: 72px;
-  border: 1px solid rgba(196, 163, 90, 0.5);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold-light);
-  transition: background 0.3s, border-color 0.3s;
-  cursor: default;
-}
-
-.video-label {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-}
-
-.video-sublabel {
+/* Unverbindlichkeit der Bilder — steht direkt unter dem Raster. */
+.moodboard-hinweis {
+  margin-top: 1.25rem;
   font-family: var(--font-ibm-plex-sans), sans-serif;
   font-size: 0.88rem;
   font-weight: 300;
-  color: rgba(174, 192, 175, 0.55);
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 720px;
 }
 
 /* Nur die Lageseite: dort ist #einleitung ein eigenstaendiges Raster.
@@ -2115,6 +2227,35 @@ h1 {
   max-width: 720px;
 }
 
+/* Drohnenvideo im Hero der Lageseite. Standbild und Film liegen
+   deckungsgleich uebereinander: Das Bild traegt den Seitenaufbau, der Film
+   blendet sich darueber, sobald er tatsaechlich laeuft. Bleibt er aus
+   (Sparmodus, reduzierte Bewegung), sieht man weiterhin das Standbild. */
+.hero-video-film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-video-film.sichtbar {
+  opacity: 1;
+}
+
+/* "Staedtisch angebunden." soll geschlossen auf einer Zeile stehen.
+   Dafuer muss die Breitengrenze der Ueberschrift hier weichen. */
+.page-lage .einleitung-text h2 {
+  max-width: none;
+}
+
+.kein-umbruch {
+  white-space: nowrap;
+}
+
 @media (max-width: 1100px) {
   .section-divider {
     margin: 0 2rem;
@@ -2275,8 +2416,10 @@ h1 {
     gap: 1rem;
   }
 
-  .plan-placeholder {
-    min-height: 300px;
+  /* Einspaltig: Der Plan nimmt die volle Fensterbreite ein, also muss die
+     Fläche auch so hoch sein, damit er ganz sichtbar bleibt. */
+  .plan-figur {
+    min-height: 100vw;
   }
 
   .navigator-header {
@@ -2300,9 +2443,13 @@ h1 {
     grid-template-columns: 1fr 1fr;
   }
 
-  .moodboard-placeholder {
+  .moodboard {
     grid-template-columns: 1fr 1fr;
     aspect-ratio: auto;
+  }
+
+  .moodboard-cell {
+    aspect-ratio: 4 / 3;
   }
 
   #kontakt,
@@ -2358,10 +2505,6 @@ h1 {
   #kontakt,
   #mikrolage {
     padding: 5rem 1.5rem;
-  }
-
-  #drohnenvideo {
-    aspect-ratio: 16 / 9;
   }
 
   /* Seitenspezifisch: Bildhöhe — Startseite etwas höher */
@@ -2434,6 +2577,10 @@ h1 {
     height: 260px;
   }
 
+  .form-optionen {
+    grid-template-columns: 1fr;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -2465,13 +2612,13 @@ h1 {
     gap: 2px;
   }
 
-  .moodboard-placeholder {
+  .moodboard {
     grid-template-columns: 1fr 1fr;
   }
 
-  .moodboard-coming {
-    flex-direction: column;
-    gap: 0.75rem;
+  .moodboard-cell-label {
+    left: 1rem;
+    bottom: 0.9rem;
   }
 
   .zahlen-grid {
@@ -2572,5 +2719,18 @@ h1 {
 @media (max-width: 640px) {
   .rechtstext {
     padding: 6.5rem 1.5rem 4rem;
+  }
+}
+
+/* ==========================================================================
+   SEHR SCHMALE BILDSCHIRME
+   ========================================================================== */
+
+@media (max-width: 359px) {
+  /* Gemessen: Die Zeile braucht bei kleinster Schriftgroesse rund 293 px,
+     die Textspalte laesst ab 360 px Fensterbreite 312 px zu. Darunter bricht
+     der Satz lieber um, als ueber den Rand zu laufen. */
+  .kein-umbruch {
+    white-space: normal;
   }
 }

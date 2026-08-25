@@ -11,12 +11,47 @@ export const metadata: Metadata = {
 
 const BUDGETS = [
   { kategorie: 'Küche', betrag: "CHF 41'000", einheit: 'pro Wohnung' },
-  { kategorie: 'Nasszellen', betrag: "CHF 26'000", einheit: 'pro Wohnung' },
+  { kategorie: 'Nasszellen', betrag: "CHF 23'000", einheit: 'pro Wohnung' },
   { kategorie: 'Plättli Wand & Boden', betrag: 'CHF 100', einheit: 'pro m²' },
   { kategorie: 'Parkett Bodenfläche', betrag: 'CHF 140', einheit: 'pro m²' },
 ];
 
-const MOODBOARD = ['Böden', 'Küche', 'Nasszellen', 'Wände', 'Armaturen', 'Details'];
+/*
+ * Moodboard-Kacheln. Die Aufnahmen zeigen Beispielausführungen und sind als
+ * Stimmungsbilder gemeint — der Hinweis unter dem Raster sagt das auch so.
+ */
+const MOODBOARD = [
+  {
+    titel: 'Böden',
+    bild: '/img/moodboard/boeden.webp',
+    alt: 'Eichenparkett mit loser Diele und zwei Feinsteinzeugplatten in Grautönen',
+  },
+  {
+    titel: 'Küchen',
+    bild: '/img/moodboard/kueche.webp',
+    alt: 'Küche mit hellen grifflosen Fronten und Kochinsel aus Naturstein',
+  },
+  {
+    titel: 'Nasszellen',
+    bild: '/img/moodboard/nasszellen.webp',
+    alt: 'Badezimmer mit sandfarbenen Platten, Badewanne und Waschtisch in Eiche',
+  },
+  {
+    titel: 'Wände',
+    bild: '/img/moodboard/waende.webp',
+    alt: 'Weiss verputzte Wand mit feiner Struktur und heller Türlaibung',
+  },
+  {
+    titel: 'Armaturen',
+    bild: '/img/moodboard/armaturen.webp',
+    alt: 'Verchromte Waschtisch- und Duscharmaturen über einem weissen Waschbecken',
+  },
+  {
+    titel: 'Details',
+    bild: '/img/moodboard/details.webp',
+    alt: 'Eingangsbereich mit raumhohem Einbauschrank und hellem Plattenboden',
+  },
+];
 
 export default function AusbauSeite() {
   return (
@@ -47,8 +82,8 @@ export default function AusbauSeite() {
             gewählt und auf den eigenen Stil abgestimmt werden.
           </p>
           <p className="body-text reveal d2">
-            So entsteht nicht einfach ein einheitlicher Standard, sondern ein Zuhause, das sich
-            persönlich anfühlt und zu den eigenen Vorstellungen passt.
+            So entsteht nicht einfach ein einheitlicher Standard, sondern ein Zuhause, das zu den
+            eigenen Vorstellungen passt und viele Wünsche erfüllt.
           </p>
         </div>
         <div className="section-image reveal d1">
@@ -136,6 +171,11 @@ export default function AusbauSeite() {
             </div>
           ))}
         </div>
+
+        <p className="budget-fussnote reveal">
+          Der Betrag für die Nasszellen gilt pro Wohnung und schliesst Duschwände und Waschtürme
+          bereits mit ein.
+        </p>
       </section>
 
       <div className="section-divider" style={{ background: 'rgba(255,255,255,0.08)' }}></div>
@@ -162,19 +202,19 @@ export default function AusbauSeite() {
           </div>
         </div>
 
-        <div className="moodboard-placeholder reveal">
-          {MOODBOARD.map((label) => (
-            <div key={label} className="moodboard-cell">
-              <span className="moodboard-cell-label">{label}</span>
-            </div>
+        <div className="moodboard reveal">
+          {MOODBOARD.map((feld) => (
+            <figure key={feld.titel} className="moodboard-cell">
+              {/* eslint-disable-next-line @next/next/no-img-element -- Zuschnitt über CSS. */}
+              <img src={feld.bild} alt={feld.alt} loading="lazy" />
+              <figcaption className="moodboard-cell-label">{feld.titel}</figcaption>
+            </figure>
           ))}
         </div>
-        <div className="moodboard-coming reveal">
-          <span className="moodboard-coming-text">
-            Moodboard / Materialkonzept wird hier eingebettet
-          </span>
-          <span className="moodboard-coming-badge">Folgt in Kürze</span>
-        </div>
+        <p className="moodboard-hinweis reveal">
+          Die Bilder dienen der Orientierung und zeigen mögliche Ausführungen. Sie sind nicht
+          verbindlich — massgebend sind der Baubeschrieb und die getroffene Materialwahl.
+        </p>
       </section>
 
       <div className="section-divider"></div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
+import Herovideo from '@/components/Herovideo';
 
 export const metadata: Metadata = {
   title: 'Lage — Sägihof Therwil',
@@ -50,10 +51,7 @@ export default function LageSeite() {
 
       {/* ══ PAGE HERO ══ */}
       <div className="page-hero">
-        <div className="page-hero-bg">
-          {/* eslint-disable-next-line @next/next/no-img-element -- Vollflächiges Hintergrundbild, Zuschnitt über CSS. */}
-          <img src="/img/luftbild.webp" alt="Luftbild Therwil Leimental" fetchPriority="high" />
-        </div>
+        <Herovideo />
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <div className="page-hero-eyebrow">Sägeweg · Therwil</div>
@@ -63,34 +61,19 @@ export default function LageSeite() {
         </div>
       </div>
 
-      {/*
-        ══ DROHNENVIDEO ══
-        Platzhalter aus dem Original. Sobald das Video vorliegt, wird der
-        Einbettungscode hier anstelle des Platzhalters eingesetzt.
-      */}
-      <div id="drohnenvideo">
-        <div className="video-inner">
-          <div className="video-play-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <polygon points="6,3 20,12 6,21" fill="currentColor" />
-            </svg>
-          </div>
-          <div className="video-label">Drohnenvideo Sägihof Therwil</div>
-          <div className="video-sublabel">Wird hier eingebettet</div>
-        </div>
-      </div>
-
       {/* ══ EINLEITUNG + ZAHLEN ══ */}
       <section id="einleitung">
         <div className="einleitung-text">
           <div className="eyebrow reveal">Einleitung</div>
           <h2 className="reveal d1">
-            Dörflich wohnen.<br />Städtisch angebunden.
+            Dörflich wohnen.<br />
+            <span className="kein-umbruch">Städtisch angebunden.</span>
           </h2>
           <p className="body-text reveal d2">
             Therwil verbindet kurze Wege, viel Grün und eine direkte Anbindung an Basel. Zwei
-            Tramlinien führen ohne Umsteigen in die Stadt, während rund 46 % der Gemeindefläche
-            landwirtschaftlich genutzt werden und weitere 24 % aus Wald bestehen.
+            Tramlinien führen ohne Umsteigen in die Stadt. Gleichzeitig bleibt die Gemeinde stark
+            von der Landschaft geprägt: Rund 46 % der Gemeindefläche werden landwirtschaftlich
+            genutzt, weitere 24 % bestehen aus Wald.
           </p>
           <p className="body-text reveal d2">
             Auch für den Alltag bietet die Gemeinde eine gut ausgebaute Infrastruktur mit Schulen,
