@@ -17,7 +17,7 @@ export default function Footer() {
           <li><Link href="/impressum">Impressum</Link></li>
           <li><Link href="/datenschutz">Datenschutz</Link></li>
         </ul>
-        <p className="footer-copy">&copy; 2025 Sägihof Therwil</p>
+        <p className="footer-copy">&copy; 2026 Sägihof Therwil</p>
       </div>
     </footer>
   );
