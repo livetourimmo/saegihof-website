@@ -46,7 +46,7 @@ export default function ImpressumSeite() {
           Telefon: <a href="tel:+41614818000">+41 61 481 80 00</a>
         </p>
 
-        <h2>Konzeption, Gestaltung &amp; Visualisierungen</h2>
+        <h2>Konzeption, Gestaltung &amp; Realisierung Website</h2>
         <p>
           liveTour Immobilienmarketing GmbH
           <br />
@@ -56,7 +56,6 @@ export default function ImpressumSeite() {
           <br />
           <a href="mailto:info@livetour.ch">info@livetour.ch</a>
         </p>
-        <p>Von liveTour stammen auch Gestaltung und Realisierung dieser Webseite.</p>
 
         <h2>Haftungsausschluss</h2>
         <p>
@@ -103,8 +102,6 @@ export default function ImpressumSeite() {
 
         <h2>Bildnachweis</h2>
         <p>
-          Visualisierungen: liveTour Immobilienmarketing GmbH
-          <br />
           Bild von Therwil:{' '}
           <a href="https://www.therwil.ch" target="_blank" rel="noopener">
             www.therwil.ch
