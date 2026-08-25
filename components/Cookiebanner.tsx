@@ -6,10 +6,10 @@ import { useEinwilligung } from './Einwilligung';
 /**
  * Hinweisleiste am unteren Rand, solange noch keine Wahl getroffen wurde.
  *
- * Bewusst knapp gehalten: Es gibt hier nur eine einzige Entscheidung zu
- * treffen — ob die beiden eingebetteten Fremdinhalte geladen werden dürfen.
- * Eine Auswahl nach Kategorien wäre vorgetäuschte Genauigkeit, denn eigene
- * Cookies oder Analysewerkzeuge setzt diese Webseite nicht ein.
+ * Es gibt hier genau zwei Dinge zu entscheiden, und beide hängen zusammen:
+ * die Reichweitenmessung und die beiden eingebetteten Fremdinhalte. Eine
+ * Auswahl nach vielen Kategorien wäre vorgetäuschte Genauigkeit — mehr als
+ * diese Punkte gibt es auf dieser Webseite nicht.
  *
  * Beide Schaltflächen sind gleichwertig gestaltet; „Nur notwendige“ ist keine
  * versteckte Nebentür.
@@ -24,17 +24,22 @@ export default function Cookiebanner() {
       <div className="cookiebanner-inner">
         <div className="cookiebanner-text">
           <p id="cookiebanner-titel" className="cookiebanner-titel">
-            Externe Inhalte
+            Cookies und externe Inhalte
           </p>
           <p>
-            Diese Webseite setzt keine eigenen Cookies und verwendet kein Analysewerkzeug. Für den
-            Wohnungsnavigator und die Umgebungskarte werden jedoch Inhalte von fremden Servern
-            geladen, wobei Ihre IP-Adresse an die jeweiligen Anbieter übermittelt wird. Näheres in
-            der <Link href="/datenschutz">Datenschutzerklärung</Link>.
+            Für den Betrieb dieser Webseite ist nichts davon nötig. Mit Ihrer Zustimmung messen wir
+            die Nutzung mit Google Analytics und laden den Wohnungsnavigator sowie die
+            Umgebungskarte von den Servern ihrer Anbieter. Lehnen Sie ab, werden weder Cookies
+            gesetzt noch Daten an Dritte übertragen. Näheres in der{' '}
+            <Link href="/datenschutz">Datenschutzerklärung</Link>.
           </p>
         </div>
         <div className="cookiebanner-knoepfe">
-          <button type="button" className="cookiebanner-btn" onClick={() => entscheiden('notwendig')}>
+          <button
+            type="button"
+            className="cookiebanner-btn"
+            onClick={() => entscheiden('notwendig')}
+          >
             Nur notwendige
           </button>
           <button
@@ -42,7 +47,7 @@ export default function Cookiebanner() {
             className="cookiebanner-btn cookiebanner-btn-primaer"
             onClick={() => entscheiden('alle')}
           >
-            Externe Inhalte erlauben
+            Alle akzeptieren
           </button>
         </div>
       </div>

@@ -1196,6 +1196,27 @@ footer {
   color: var(--gold-light);
 }
 
+/* Die Cookie-Einstellungen sind eine Schaltfläche, kein Verweis — sie rufen
+   keine Seite auf, sondern verwerfen die getroffene Wahl. Optisch fügen sie
+   sich in die Reihe der übrigen Fusszeilenverweise ein. */
+.footer-einstellungen {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-einstellungen:hover,
+.footer-einstellungen:focus-visible {
+  color: var(--gold-light);
+}
+
 .footer-copy {
   font-family: var(--font-jost), sans-serif;
   font-size: 0.62rem;

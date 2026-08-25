@@ -3,17 +3,18 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 /**
- * Einwilligung in das Nachladen fremder Inhalte.
+ * Einwilligung in alles, was über den reinen Seitenbetrieb hinausgeht.
  *
- * Diese Webseite setzt selbst keine Cookies und bindet kein Analysewerkzeug
- * ein. Zu entscheiden gibt es deshalb nur eines: ob der Wohnungsnavigator und
- * die Umgebungskarte von den Servern ihrer Anbieter geladen werden dürfen.
- * Dabei erfährt der jeweilige Anbieter die IP-Adresse der Besucherin oder des
- * Besuchers — bis zur Zustimmung bleiben diese Einbettungen deshalb aus.
+ * Zwei Dinge hängen daran, und beide sind ohne Zustimmung vollständig aus:
  *
- * Die Wahl liegt im localStorage und nicht in einem Cookie: Sie wird nie an
- * den Server übertragen und ist damit selbst technisch notwendig im engeren
- * Sinn.
+ *  • **Fremde Inhalte** — Wohnungsnavigator und Umgebungskarte werden von den
+ *    Servern ihrer Anbieter geladen, die dabei die IP-Adresse erfahren.
+ *  • **Reichweitenmessung** — Google Analytics 4. Das Skript wird gar nicht
+ *    erst eingebunden, solange keine Zustimmung vorliegt; ohne Skript gibt es
+ *    weder Cookies noch übertragene Messdaten.
+ *
+ * Die Wahl liegt im localStorage und nicht in einem Cookie: Sie wird dadurch
+ * nie an den Server übertragen.
  */
 export type Wahl = 'unbekannt' | 'notwendig' | 'alle';
 
@@ -21,10 +22,12 @@ const SPEICHERSCHLUESSEL = 'saegihof-einwilligung';
 
 type Kontextwert = {
   wahl: Wahl;
-  /** Kurzform für „fremde Inhalte dürfen geladen werden“. */
+  /** Dürfen Navigator und Karte von fremden Servern geladen werden? */
   fremdinhalteErlaubt: boolean;
+  /** Darf Google Analytics geladen werden? */
+  analyseErlaubt: boolean;
   entscheiden: (wahl: Exclude<Wahl, 'unbekannt'>) => void;
-  /** Setzt die Wahl zurück, damit erneut entschieden werden kann. */
+  /** Verwirft die Wahl, sodass die Abfrage erneut erscheint. */
   zuruecksetzen: () => void;
 };
 
@@ -66,7 +69,13 @@ export function EinwilligungProvider({ children }: { children: React.ReactNode }
 
   return (
     <EinwilligungKontext.Provider
-      value={{ wahl, fremdinhalteErlaubt: wahl === 'alle', entscheiden, zuruecksetzen }}
+      value={{
+        wahl,
+        fremdinhalteErlaubt: wahl === 'alle',
+        analyseErlaubt: wahl === 'alle',
+        entscheiden,
+        zuruecksetzen,
+      }}
     >
       {children}
     </EinwilligungKontext.Provider>

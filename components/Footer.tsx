@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Cookieeinstellungen from './Cookieeinstellungen';
 
 /** Fusszeile — auf allen Seiten identisch. */
 export default function Footer() {
@@ -16,6 +17,7 @@ export default function Footer() {
           <li><Link href="/lage">Lage</Link></li>
           <li><Link href="/impressum">Impressum</Link></li>
           <li><Link href="/datenschutz">Datenschutz</Link></li>
+          <li><Cookieeinstellungen /></li>
         </ul>
         <p className="footer-copy">&copy; 2026 Sägihof Therwil</p>
       </div>

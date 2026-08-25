@@ -3,6 +3,7 @@ import { Jost, IBM_Plex_Sans } from 'next/font/google';
 import ScrollEffects from '@/components/ScrollEffects';
 import { EinwilligungProvider } from '@/components/Einwilligung';
 import Cookiebanner from '@/components/Cookiebanner';
+import Analyse from '@/components/Analyse';
 import './globals.css';
 
 /*
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <EinwilligungProvider>
           {children}
           <Cookiebanner />
+          <Analyse />
         </EinwilligungProvider>
         <ScrollEffects />
       </body>

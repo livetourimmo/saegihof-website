@@ -121,24 +121,53 @@ export default function DatenschutzSeite() {
           besteht dadurch keine Verbindung zu externen Schrift-, Bild- oder Videoanbietern.
         </p>
 
-        <h2>Cookies und Analyse</h2>
+        <h2>Cookies und Ihre Einwilligung</h2>
         <p>
-          Diese Webseite setzt keine eigenen Cookies und bindet kein Analyse- oder
-          Reichweitenmesswerkzeug ein. Es findet kein Tracking und keine Auswertung Ihres
-          Nutzungsverhaltens statt.
+          Für den reinen Betrieb dieser Webseite werden keine Cookies benötigt. Cookies entstehen
+          erst, wenn Sie der Reichweitenmessung und den eingebetteten Inhalten zustimmen — und nur
+          dann.
         </p>
         <p>
-          Gespeichert wird einzig Ihre Entscheidung darüber, ob die oben genannten eingebetteten
-          Inhalte geladen werden dürfen. Sie liegt im lokalen Speicher Ihres Browsers
-          (<em>localStorage</em>) und nicht in einem Cookie — sie wird also nie an unseren Server
-          übertragen. Sie können den Eintrag jederzeit über die Einstellungen Ihres Browsers
-          löschen; danach erscheint die Abfrage beim nächsten Besuch erneut.
+          Ihre Entscheidung selbst speichern wir im lokalen Speicher Ihres Browsers
+          (<em>localStorage</em>) und nicht in einem Cookie. Sie wird dadurch nie an unseren Server
+          übertragen. Über den Verweis „Cookie-Einstellungen“ in der Fusszeile können Sie die
+          Abfrage jederzeit erneut öffnen und Ihre Wahl ändern. Nehmen Sie eine Zustimmung zurück,
+          werden Messung und Einbettungen unmittelbar wieder entfernt.
         </p>
         <p>
-          Solange Sie den eingebetteten Inhalten nicht zugestimmt haben, werden sie nicht geladen
-          und es entsteht keine Verbindung zu den Servern der Anbieter. Nach einer Zustimmung
-          können diese Anbieter eigene Cookies setzen; hierfür gelten ihre
-          Datenschutzbestimmungen.
+          Solange Sie nicht zugestimmt haben, wird weder das Analysewerkzeug noch eine der
+          Einbettungen geladen. Es entstehen dadurch keine Cookies dieser Anbieter, und es werden
+          keine Daten an sie übertragen.
+        </p>
+
+        <h2>Reichweitenmessung mit Google Analytics 4</h2>
+        <p>
+          Mit Ihrer Zustimmung setzen wir Google Analytics 4 ein, einen Dienst von Google. Er hilft
+          uns zu verstehen, wie diese Webseite genutzt wird — etwa welche Seiten aufgerufen werden,
+          wie lange Besucherinnen und Besucher bleiben und über welchen Weg sie zu uns gefunden
+          haben. Wir nutzen die Auswertung ausschliesslich, um das Angebot zu verbessern.
+        </p>
+        <p>
+          Ohne Ihre Zustimmung wird das Analysewerkzeug nicht eingebunden. Erst danach wird es
+          geladen und setzt Cookies in Ihrem Browser, die eine wiederkehrende Sitzung erkennbar
+          machen (unter anderem <em>_ga</em> sowie ein Cookie, dessen Name die Kennung unseres
+          Datenstreams enthält). Wie lange die erhobenen Daten bei Google aufbewahrt werden, ist in
+          den Einstellungen unserer Google-Analytics-Property festgelegt.
+        </p>
+        <p>
+          Google Analytics 4 verwendet Ihre IP-Adresse, um den ungefähren Ort des Zugriffs zu
+          bestimmen, und speichert sie nicht. Google kann die Daten auch ausserhalb der Schweiz und
+          des Europäischen Wirtschaftsraums bearbeiten, namentlich in den Vereinigten Staaten.
+        </p>
+        <p>
+          Wir verwenden den Einwilligungsmodus von Google (<em>Consent Mode</em>). Dessen
+          Ausgangszustand ist auf Ablehnung gesetzt und wird erst nach Ihrer ausdrücklichen
+          Zustimmung auf die Messung umgestellt. Werbebezogene Einwilligungen bleiben durchgehend
+          abgelehnt — Werbefunktionen und Zielgruppenbildung für Werbung setzen wir nicht ein.
+        </p>
+        <p>
+          Sie können Ihre Zustimmung jederzeit über „Cookie-Einstellungen“ in der Fusszeile
+          zurücknehmen. Die Messung wird dann sofort beendet.
         </p>
 
         <h2>Aufbewahrung</h2>
