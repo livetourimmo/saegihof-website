@@ -427,18 +427,15 @@ h2 {
 
 .hero-stat {
   flex: 1;
-  padding-right: 2rem;
+  /* Gleicher Abstand auf beiden Seiten und zentrierter Inhalt: So sitzt jede
+     Angabe in der Mitte ihres Feldes statt an der Trennlinie davor. */
+  padding: 0 1rem;
+  text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .hero-stat:last-child {
   border-right: none;
-  padding-right: 0;
-  padding-left: 2rem;
-}
-
-.hero-stat:first-child {
-  padding-left: 0;
 }
 
 .hero-stat-num {
@@ -1457,6 +1454,43 @@ h1 {
   border: 0;
 }
 
+/* Meldet die Anwendung keine brauchbare Höhe, wächst der Rahmen nicht mit.
+   Dann bekommt er ein festes Fenster mit eigenem Bildlauf: Der Navigator
+   bleibt vollständig bedienbar, ohne dass ein abgeschnittener Block über
+   mehrere Bildschirmlängen stehen bleibt. */
+.navigator-frame.ist-begrenzt iframe {
+  height: min(860px, 80vh);
+  min-height: 0;
+}
+
+/* Hinweis über dem begrenzten Rahmen — ohne Scrollen erreichbar. */
+.navigator-hinweis {
+  margin-bottom: 1rem;
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.navigator-hinweis a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--forest);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 59, 44, 0.35);
+  padding-bottom: 1px;
+  transition: gap 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.navigator-hinweis a:hover,
+.navigator-hinweis a:focus-visible {
+  gap: 0.8rem;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
 /* Rueckfallebene unter dem Navigator — greift, wenn die eingebettete
    Anwendung nicht laedt (etwa wegen Zugriffsschutz der Vorschau-Adresse). */
 .navigator-fallback {
@@ -2356,12 +2390,24 @@ h1 {
 
   .hero-content {
     grid-template-columns: 1fr;
-    padding: 0 1.5rem 3.5rem;
-    gap: 2.5rem;
+    padding: 0 1.5rem 2.5rem;
+    gap: 1.5rem;
   }
 
   .hero-content-right {
     padding-bottom: 0;
+  }
+
+  /* Einspaltig steht der Beschreibungstext direkt unter dem Titel und darf
+     nicht mehr die Zeilenhöhe einer eigenen Spalte beanspruchen. */
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero .btn-primary {
+    margin-bottom: 1.5rem;
   }
 
   .content-section {
@@ -2425,6 +2471,22 @@ h1 {
   .navigator-header {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  /* Solange noch keine Höhe gemeldet ist, reicht ein knapper Rahmen —
+     760 px sind auf dem Telefon fast ein ganzer Bildschirm. */
+  .navigator-frame iframe {
+    min-height: 520px;
+  }
+
+  /* Einspaltig meldet die Anwendung Höhen von 19'000 px und mehr — alle 53
+     Wohnungen untereinander. Als Seitenabschnitt wären das über zwanzig
+     Bildschirmlängen, an denen man vorbeiscrollen müsste. Deshalb bekommt
+     der Rahmen hier ein festes Fenster und scrollt in sich; die gemeldete
+     Höhe steht zwar weiterhin als height am Element, max-height sticht sie
+     aber. */
+  .navigator-frame iframe {
+    max-height: 78vh;
   }
 
   .rundgang-header,
@@ -2544,25 +2606,63 @@ h1 {
     display: flex;
   }
 
+  /* Die Angaben bleiben nebeneinander. Untereinander gestapelt brauchten
+     sie rund 230 px und drückten den Titel aus dem Bild. */
+  /* Der Hero muss nicht bildschirmfüllend sein — entscheidend ist, dass
+     Bild und Titel zusammen wirken. Eine feste Mindesthöhe von 640 px
+     zwang auf kleinen Geräten zu viel Leerraum unter den Inhalt. */
+  .hero {
+    height: auto;
+    min-height: 88vh;
+  }
+
+  /* Hochkant passt das Bild in der Höhe genau hinein — beschnitten wird
+     seitlich, nicht oben und unten. Der vertikale Anteil von
+     "center 60%" läuft hier also ins Leere. Der Ausschnitt wandert nach
+     links auf Gebäude und Innenhof; die Bildmitte zeigt hochkant vor allem
+     Himmel. */
+  .hero-bg img {
+    object-position: 32% center;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero .btn-primary {
+    padding: 0.85rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
   .hero-stats {
-    flex-direction: column;
-    gap: 1.25rem;
-    padding-top: 1.75rem;
+    flex-direction: row;
+    gap: 0;
+    padding-top: 1.25rem;
   }
 
   .hero-stat {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0 0 1.25rem;
+    padding: 0 0.5rem;
   }
 
-  .hero-stat:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+  .hero-stat-num {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
   }
 
-  .hero-stat:first-child {
-    padding-left: 0;
+  .hero-stat-num sup {
+    font-size: 0.7rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    line-height: 1.35;
   }
 
   .hero-scroll {
