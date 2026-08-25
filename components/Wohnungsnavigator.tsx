@@ -108,17 +108,15 @@ export default function Wohnungsnavigator() {
       )}
 
       {/*
-        Zwei Ebenen, und das mit Absicht: Die äussere Hülle trägt "reveal" und
-        wird von React nie angefasst. ScrollEffects ergänzt dort beim
-        Hereinscrollen imperativ die Klasse "visible".
+        Zwei Ebenen mit Absicht: Die Hülle trägt die Fixierung beim Scrollen,
+        das innere Element den Rahmen und die zustandsabhängige Klasse.
 
-        Stünde "reveal" am selben Element, dessen className von React aus dem
-        Zustand berechnet wird, würde React beim Zustandswechsel das gesamte
-        Attribut neu schreiben und das von aussen gesetzte "visible" dabei
-        verwerfen — der Rahmen bliebe auf Deckkraft 0 stehen und der Navigator
-        unsichtbar.
+        Bewusst ohne `reveal`: Der Beobachter in ScrollEffects sammelt die
+        Elemente einmalig beim Seitenaufbau ein. Der Navigator entsteht aber
+        erst, wenn den fremden Inhalten zugestimmt wurde — er würde also nie
+        erfasst und bliebe dauerhaft auf Deckkraft 0 stehen.
       */}
-      <div className="navigator-huelle reveal">
+      <div className="navigator-huelle">
         <div className={zustand === 'begrenzt' ? 'navigator-frame ist-begrenzt' : 'navigator-frame'}>
           <iframe
             ref={iframeRef}
