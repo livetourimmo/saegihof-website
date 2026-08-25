@@ -809,14 +809,6 @@ h2 {
   object-position: top;
 }
 
-.person-initials {
-  font-family: var(--font-jost), sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: var(--forest-mid);
-  letter-spacing: 0.04em;
-}
-
 .person-info {
   flex: 1;
   min-width: 0;
@@ -2261,6 +2253,14 @@ h1 {
   max-width: 720px;
 }
 
+/* Nur die Lageseite: Dort läuft im Hero das Drohnenvideo. Bei den 52vh der
+   übrigen Seiten blieb davon knapp die Hälfte der Bildhöhe übrig — der Rest
+   fiel dem Zuschnitt zum Opfer. */
+.page-lage .page-hero {
+  height: 78vh;
+  min-height: 520px;
+}
+
 /* Drohnenvideo im Hero der Lageseite. Standbild und Film liegen
    deckungsgleich uebereinander: Das Bild traegt den Seitenaufbau, der Film
    blendet sich darueber, sobald er tatsaechlich laeuft. Bleibt er aus
@@ -2696,6 +2696,11 @@ h1 {
 
   .page-hero {
     height: 45vh;
+  }
+
+  .page-lage .page-hero {
+    height: 62vh;
+    min-height: 420px;
   }
 
   .nav-filter-bar {

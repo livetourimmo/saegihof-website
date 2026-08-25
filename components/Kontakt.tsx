@@ -2,7 +2,7 @@ import Kontaktformular, { type FormularVariante } from './Kontaktformular';
 import { TelefonIcon, MailIcon } from './Icons';
 
 type Person = {
-  initialen: string;
+  bild: string;
   name: string;
   rolle: string;
   telefon: string;
@@ -12,7 +12,7 @@ type Person = {
 
 const PERSONEN: Record<string, Person> = {
   BW: {
-    initialen: 'BW',
+    bild: '/img/team/brigitte-widmer.webp',
     name: 'Brigitte Widmer',
     rolle: 'Beratung / Verkauf',
     telefon: '+41792618634',
@@ -20,7 +20,7 @@ const PERSONEN: Record<string, Person> = {
     mail: 'b.widmer@whimmo.ch',
   },
   HV: {
-    initialen: 'HV',
+    bild: '/img/team/heike-vierheilig.webp',
     name: 'Heike Vierheilig',
     rolle: 'Beratung / Verkauf',
     telefon: '+41762697813',
@@ -33,7 +33,8 @@ function PersonKarte({ person, verzoegerung }: { person: Person; verzoegerung: s
   return (
     <div className={`kontakt-person reveal${verzoegerung}`}>
       <div className="person-photo">
-        <span className="person-initials">{person.initialen}</span>
+        {/* eslint-disable-next-line @next/next/no-img-element -- Zuschnitt über CSS. */}
+        <img src={person.bild} alt={person.name} width={64} height={76} loading="lazy" />
       </div>
       <div className="person-info">
         <div className="person-name">{person.name}</div>
