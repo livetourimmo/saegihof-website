@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 import Wohnungsnavigator from '@/components/Wohnungsnavigator';
+import ExternerInhalt from '@/components/ExternerInhalt';
 
 export const metadata: Metadata = {
   title: 'Wohnungen — Sägihof Therwil',
@@ -72,7 +73,12 @@ export default function WohnungenSeite() {
           </div>
         </div>
 
-        <Wohnungsnavigator />
+        <ExternerInhalt
+          anbieter="liveTour Immobilienmarketing GmbH"
+          beschreibung="Wohnungsnavigator mit allen 53 Wohnungen"
+        >
+          <Wohnungsnavigator />
+        </ExternerInhalt>
       </section>
 
       <div className="section-divider"></div>

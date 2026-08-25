@@ -35,6 +35,10 @@
   --text-mid: #3D4840;
   --text-muted: #78837A;
   --white: #FFFFFF;
+
+  /* Höhe der fixierten Navigationsleiste plus etwas Luft. Der Navigator
+     hängt sich beim Scrollen daran auf. */
+  --navigator-oben: 6.5rem;
 }
 
 html {
@@ -46,7 +50,11 @@ body {
   font-weight: 300;
   color: var(--text);
   background: var(--cream);
-  overflow-x: hidden;
+  /* clip statt hidden: Beides verhindert waagrechtes Scrollen, aber hidden
+     macht den body zum Scrollcontainer und setzt damit position: sticky bei
+     allen Nachfahren ausser Kraft — der Wohnungsnavigator lief dadurch mit,
+     statt stehen zu bleiben. */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -1439,10 +1447,23 @@ h1 {
   overflow: hidden;
 }
 
+/* Der Rahmen bleibt beim Scrollen unter der Navigation stehen, statt
+   mitzulaufen. Damit das überhaupt möglich ist, muss er in das Fenster
+   passen — sonst gäbe es nichts zu fixieren. Die Anwendung im Rahmen bringt
+   ihren eigenen Bildlauf mit. */
+.navigator-huelle {
+  position: sticky;
+  top: var(--navigator-oben);
+}
+
 .navigator-frame iframe {
   display: block;
   width: 100%;
-  min-height: 760px;
+  min-height: 420px;
+  /* Sticht die vom iFrame gemeldete Höhe, die auf dem Telefon bis über
+     19'000 px geht. min-height bleibt bewusst klein: Bei einem Konflikt
+     gewinnt min-height gegen max-height. */
+  max-height: calc(100vh - var(--navigator-oben) - 2rem);
   border: 0;
 }
 
@@ -2479,14 +2500,9 @@ h1 {
     min-height: 520px;
   }
 
-  /* Einspaltig meldet die Anwendung Höhen von 19'000 px und mehr — alle 53
-     Wohnungen untereinander. Als Seitenabschnitt wären das über zwanzig
-     Bildschirmlängen, an denen man vorbeiscrollen müsste. Deshalb bekommt
-     der Rahmen hier ein festes Fenster und scrollt in sich; die gemeldete
-     Höhe steht zwar weiterhin als height am Element, max-height sticht sie
-     aber. */
-  .navigator-frame iframe {
-    max-height: 78vh;
+  /* Schmalere Navigationsleiste, entsprechend weniger Abstand nach oben. */
+  :root {
+    --navigator-oben: 5rem;
   }
 
   .rundgang-header,
@@ -2813,5 +2829,197 @@ h1 {
      der Satz lieber um, als ueber den Rand zu laufen. */
   .kein-umbruch {
     white-space: normal;
+  }
+}
+
+/* ==========================================================================
+   EINWILLIGUNG IN FREMDE INHALTE
+   --------------------------------------------------------------------------
+   Leiste am unteren Rand sowie die Sperrfläche, die vor einer noch nicht
+   freigegebenen Einbettung steht.
+   ========================================================================== */
+
+.cookiebanner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Über der Navigationsleiste (z-index 200), damit die Leiste in jedem Fall
+     bedienbar bleibt. */
+  z-index: 300;
+  background: var(--cream);
+  border-top: 1px solid var(--stone);
+  box-shadow: 0 -8px 32px rgba(22, 40, 25, 0.08);
+}
+
+.cookiebanner-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.cookiebanner-text p {
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-mid);
+  max-width: 78ch;
+}
+
+.cookiebanner-titel {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.cookiebanner-text a {
+  color: var(--forest-mid);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cookiebanner-knoepfe {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.cookiebanner-btn {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.9rem 1.5rem;
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid rgba(31, 59, 44, 0.4);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.cookiebanner-btn:hover {
+  background: rgba(31, 59, 44, 0.06);
+}
+
+.cookiebanner-btn-primaer {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--white);
+}
+
+.cookiebanner-btn-primaer:hover {
+  background: var(--forest-deep);
+  border-color: var(--forest-deep);
+}
+
+/* Sperrfläche an Stelle einer Einbettung. */
+.externer-inhalt {
+  background: var(--stone-light);
+  border: 1px solid var(--stone);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.externer-inhalt-inner {
+  max-width: 46ch;
+  text-align: center;
+}
+
+.externer-inhalt-titel {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+}
+
+.externer-inhalt-text {
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text-mid);
+  margin-bottom: 1.5rem;
+}
+
+.externer-inhalt-text a {
+  color: var(--forest-mid);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.externer-inhalt-knoepfe {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.externer-inhalt-btn {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.4rem;
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid rgba(31, 59, 44, 0.4);
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.externer-inhalt-btn:hover {
+  background: rgba(31, 59, 44, 0.06);
+}
+
+.externer-inhalt-btn-primaer {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--white);
+}
+
+.externer-inhalt-btn-primaer:hover {
+  background: var(--forest-deep);
+  border-color: var(--forest-deep);
+}
+
+@media (max-width: 900px) {
+  .cookiebanner-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .cookiebanner-knoepfe {
+    flex-direction: column;
+  }
+
+  .cookiebanner-btn {
+    width: 100%;
+  }
+
+  .externer-inhalt {
+    min-height: 340px;
+    padding: 2rem 1.5rem;
+  }
+
+  .externer-inhalt-knoepfe {
+    flex-direction: column;
   }
 }

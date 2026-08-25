@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Jost, IBM_Plex_Sans } from 'next/font/google';
 import ScrollEffects from '@/components/ScrollEffects';
+import { EinwilligungProvider } from '@/components/Einwilligung';
+import Cookiebanner from '@/components/Cookiebanner';
 import './globals.css';
 
 /*
@@ -49,7 +51,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className={`${jost.variable} ${ibmPlexSans.variable}`}>
       <body>
-        {children}
+        <EinwilligungProvider>
+          {children}
+          <Cookiebanner />
+        </EinwilligungProvider>
         <ScrollEffects />
       </body>
     </html>

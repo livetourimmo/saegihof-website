@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 import Herovideo from '@/components/Herovideo';
+import ExternerInhalt from '@/components/ExternerInhalt';
 
 export const metadata: Metadata = {
   title: 'Lage — Sägihof Therwil',
@@ -242,6 +243,7 @@ export default function LageSeite() {
         </div>
 
         <div className="karte-embed reveal">
+          <ExternerInhalt anbieter="Atlist" beschreibung="Interaktive Karte der Umgebung">
           <iframe
             id="atlist-embed"
             src="https://my.atlist.com/map/0e2b3422-3760-4a82-aa5d-03abe77f9305?share=true"
@@ -254,6 +256,7 @@ export default function LageSeite() {
             scrolling="no"
             allowFullScreen
           ></iframe>
+          </ExternerInhalt>
         </div>
       </section>
 

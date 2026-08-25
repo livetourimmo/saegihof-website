@@ -26,18 +26,16 @@ export default function DatenschutzSeite() {
 
         <h2>Verantwortliche Stelle</h2>
         <p>
-          Schiller Ventures GmbH
+          Swiss Urban Immobilien AG
           <br />
-          Noah Schiller
+          Oberwilerstrasse 32
           <br />
-          Albulastrasse 34
-          <br />
-          CH-8048 Zürich
+          CH-4102 Binningen
         </p>
         <p>
-          E-Mail: <a href="mailto:noah@schiller-ventures.ch">noah@schiller-ventures.ch</a>
+          E-Mail: <a href="mailto:contact@whimmo.ch">contact@whimmo.ch</a>
           <br />
-          Telefon: <a href="tel:+41786790792">+41 78 679 07 92</a>
+          Telefon: <a href="tel:+41614818000">+41 61 481 80 00</a>
         </p>
         <p>
           Anfragen aus dem Kontaktformular werden zur Bearbeitung an die mit der Vermarktung
@@ -127,8 +125,20 @@ export default function DatenschutzSeite() {
         <p>
           Diese Webseite setzt keine eigenen Cookies und bindet kein Analyse- oder
           Reichweitenmesswerkzeug ein. Es findet kein Tracking und keine Auswertung Ihres
-          Nutzungsverhaltens statt. Die oben genannten eingebetteten Dienste können eigene Cookies
-          verwenden; hierfür gelten die Datenschutzbestimmungen der jeweiligen Anbieter.
+          Nutzungsverhaltens statt.
+        </p>
+        <p>
+          Gespeichert wird einzig Ihre Entscheidung darüber, ob die oben genannten eingebetteten
+          Inhalte geladen werden dürfen. Sie liegt im lokalen Speicher Ihres Browsers
+          (<em>localStorage</em>) und nicht in einem Cookie — sie wird also nie an unseren Server
+          übertragen. Sie können den Eintrag jederzeit über die Einstellungen Ihres Browsers
+          löschen; danach erscheint die Abfrage beim nächsten Besuch erneut.
+        </p>
+        <p>
+          Solange Sie den eingebetteten Inhalten nicht zugestimmt haben, werden sie nicht geladen
+          und es entsteht keine Verbindung zu den Servern der Anbieter. Nach einer Zustimmung
+          können diese Anbieter eigene Cookies setzen; hierfür gelten ihre
+          Datenschutzbestimmungen.
         </p>
 
         <h2>Aufbewahrung</h2>
@@ -163,9 +173,9 @@ export default function DatenschutzSeite() {
 
         <h2>Kontakt in Datenschutzfragen</h2>
         <p>
-          Schiller Ventures GmbH, Albulastrasse 34, CH-8048 Zürich
+          Swiss Urban Immobilien AG, Oberwilerstrasse 32, CH-4102 Binningen
           <br />
-          E-Mail: <a href="mailto:noah@schiller-ventures.ch">noah@schiller-ventures.ch</a>
+          E-Mail: <a href="mailto:contact@whimmo.ch">contact@whimmo.ch</a>
         </p>
 
         <h2>Änderungen</h2>

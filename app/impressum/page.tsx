@@ -18,18 +18,16 @@ export default function ImpressumSeite() {
 
         <h2>Gesamtverantwortung</h2>
         <p>
-          Ein Projekt der Schiller Ventures GmbH
+          Ein Projekt der Swiss Urban Immobilien AG
           <br />
-          Noah Schiller
+          Oberwilerstrasse 32
           <br />
-          Albulastrasse 34
-          <br />
-          CH-8048 Zürich
+          CH-4102 Binningen
         </p>
         <p>
-          E-Mail: <a href="mailto:noah@schiller-ventures.ch">noah@schiller-ventures.ch</a>
+          E-Mail: <a href="mailto:contact@whimmo.ch">contact@whimmo.ch</a>
           <br />
-          Telefon: <a href="tel:+41786790792">+41 78 679 07 92</a>
+          Telefon: <a href="tel:+41614818000">+41 61 481 80 00</a>
         </p>
 
         <h2>Vermarktung</h2>
