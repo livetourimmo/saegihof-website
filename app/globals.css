@@ -3044,3 +3044,37 @@ h1 {
     flex-direction: column;
   }
 }
+
+/* ==========================================================================
+   TITEL AUF KLEINEN BILDSCHIRMEN
+   --------------------------------------------------------------------------
+   Die feinen Schnitte (200/300) wirken am Desktop grosszügig, auf dem Handy
+   aber blass — kleine Schriftgrade und hohe Pixeldichte lassen die dünnen
+   Striche verschwinden. Ab hier bekommen deshalb sämtliche Titel mehr
+   Gewicht; die Fliesstexte bleiben unverändert.
+
+   600 ist der stärkste Schnitt, der von Jost geladen wird (siehe
+   app/layout.tsx). Karten- und Listentitel bleiben eine Stufe darunter,
+   damit die Rangfolge zwischen Überschrift und Untertitel erhalten bleibt.
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  .hero h1,
+  .rechtstext h1,
+  .rechtstext h2 {
+    font-weight: 600;
+  }
+
+  .wohntyp-name,
+  .person-name,
+  .makro-title,
+  .mikro-title,
+  .nav-cell-main,
+  .plan-download-titel,
+  .form-danke-titel,
+  .externer-inhalt-titel {
+    font-weight: 500;
+  }
+}
