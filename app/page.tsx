@@ -45,7 +45,7 @@ export default function Startseite() {
 
           <div className="hero-content-right">
             <p className="hero-desc reveal d1">
-              53 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen
+              32 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen
               Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.
             </p>
             <Link href="/wohnungen" className="btn-primary reveal d2">
@@ -54,7 +54,7 @@ export default function Startseite() {
             </Link>
             <div className="hero-stats reveal d3">
               <div className="hero-stat">
-                <div className="hero-stat-num">53</div>
+                <div className="hero-stat-num">32</div>
                 <div className="hero-stat-label">Eigentumswohnungen</div>
               </div>
               <div className="hero-stat">
@@ -63,7 +63,7 @@ export default function Startseite() {
               </div>
               <div className="hero-stat">
                 <div className="hero-stat-num">
-                  67–130 <sup>m²</sup>
+                  89–130 <sup>m²</sup>
                 </div>
                 <div className="hero-stat-label">Wohnfläche</div>
               </div>
@@ -83,26 +83,26 @@ export default function Startseite() {
               Für jeden<br />Lebensabschnitt.
             </h2>
             <p className="body-text reveal d2">
-              53 Wohnungen in vier Häusern, von 67 bis 130 m². Ob kompakt für zwei oder grosszügig
-              für die ganze Familie.
+              32 Wohnungen in vier Häusern, von 89 bis 130 m². Ob grosszügig für die ganze
+              Familie oder mit eigenem Garten.
             </p>
 
             <ul className="wohntypen reveal d2">
               <li className="wohntyp">
                 <span className="wohntyp-num">01</span>
                 <span className="wohntyp-name">
-                  2.5-Zimmer
-                  <small>Für Singles &amp; Paare</small>
+                  3.5 &amp; 4.5-Zimmer
+                  <small>Für Umsteiger und Familien, die Wohnkomfort schätzen</small>
                 </span>
-                <span className="wohntyp-area">ab 67 m²</span>
+                <span className="wohntyp-area">89–115 m²</span>
               </li>
               <li className="wohntyp">
                 <span className="wohntyp-num">02</span>
                 <span className="wohntyp-name">
-                  3.5 &amp; 4.5-Zimmer
-                  <small>Für Familien</small>
+                  Gartenwohnungen
+                  <small>Eigener Garten &amp; Sitzplatz</small>
                 </span>
-                <span className="wohntyp-area">90–115 m²</span>
+                <span className="wohntyp-area">98–124 m²</span>
               </li>
               <li className="wohntyp">
                 <span className="wohntyp-num">03</span>

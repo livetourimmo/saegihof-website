@@ -36,11 +36,11 @@ export const metadata: Metadata = {
   // Erst dann erzeugen Next.js und die Sitemap absolute URLs.
   metadataBase: new URL('https://saegihof-therwil.ch'),
   title: {
-    default: 'Sägihof Therwil — 53 Eigentumswohnungen',
+    default: 'Sägihof Therwil — 32 Eigentumswohnungen',
     template: '%s',
   },
   description:
-    '53 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.',
+    '32 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.',
   openGraph: {
     type: 'website',
     locale: 'de_CH',

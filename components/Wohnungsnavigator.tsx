@@ -12,7 +12,7 @@ const VOLLANSICHT_URL = 'https://lvt-gamma.vercel.app/immobilie/saegihof?sort=so
 /**
  * Ab dieser gemeldeten Höhe gilt die Meldung als brauchbar.
  *
- * Der Navigator besteht aus Axonometrie, Filterfeld und der Liste aller 53
+ * Der Navigator besteht aus Axonometrie, Filterfeld und der Liste aller 32
  * Wohnungen und ist geladen mehrere tausend Pixel hoch. Kleinere Meldungen
  * beschreiben keine fertige Ansicht: Beobachtet wurden 0 und rund 760.
  */

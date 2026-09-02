@@ -8,7 +8,7 @@ import ExternerInhalt from '@/components/ExternerInhalt';
 export const metadata: Metadata = {
   title: 'Wohnungen — Sägihof Therwil',
   description:
-    '53 Eigentumswohnungen im Sägihof Therwil. Von 2,5 bis 4,5 Zimmer, 67 bis 130 m². Entdecken Sie alle Wohnungen im Wohnungsnavigator.',
+    '32 Eigentumswohnungen im Sägihof Therwil. Von 3.5 bis 4.5 Zimmer, 89 bis 130 m². Entdecken Sie alle Wohnungen im Wohnungsnavigator.',
 };
 
 export default function WohnungenSeite() {
@@ -34,16 +34,16 @@ export default function WohnungenSeite() {
         <div className="section-text">
           <div className="eyebrow reveal">Angebot</div>
           <h2 className="reveal d1">
-            Von 2,5 bis 4,5 Zimmer.<br />Von kompakt bis grosszügig.
+            Von 3.5 bis 4.5 Zimmer.<br />Vom Garten bis unters Dach.
           </h2>
           <p className="body-text reveal d2">
-            Im Sägihof entstehen 53 Eigentumswohnungen mit Wohnflächen zwischen 67 und 130 m² — von
-            kompakten 2,5-Zimmer-Wohnungen über vielseitige 3,5-Zimmer-Grundrisse bis zu
-            grosszügigen 4,5-Zimmer-Wohnungen und Attikawohnungen im obersten Geschoss.
+            Im Sägihof entstehen 32 Eigentumswohnungen mit Wohnflächen zwischen 89 und 130 m² — von
+            vielseitigen 3.5-Zimmer-Grundrissen über grosszügige 4.5-Zimmer-Wohnungen und
+            Gartenwohnungen bis zu den Attikawohnungen im obersten Geschoss.
           </p>
           <p className="body-text reveal d2">
             Je nach Lage gehören private Sitzplätze, Loggien, grosszügige Balkone oder Gärten von
-            bis zu 250 m² dazu. Die 3,5- und 4,5-Zimmer-Wohnungen verfügen über zwei Badezimmer, in
+            bis zu 250 m² dazu. Die 3.5- und 4.5-Zimmer-Wohnungen verfügen über zwei Badezimmer, in
             den Attikawohnungen sorgen grosse Aussenflächen und die erhöhte Lage für viel Freiraum.
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function WohnungenSeite() {
           </div>
           <div>
             <p className="body-text reveal d1">
-              Mit dem Wohnungsnavigator erhalten Sie einen direkten Überblick über alle 53
+              Mit dem Wohnungsnavigator erhalten Sie einen direkten Überblick über alle 32
               Wohnungen im Sägihof. Filtern Sie nach Zimmerzahl, Wohnfläche, Geschoss oder
               Verfügbarkeit.
             </p>
@@ -75,7 +75,7 @@ export default function WohnungenSeite() {
 
         <ExternerInhalt
           anbieter="liveTour Immobilienmarketing GmbH"
-          beschreibung="Wohnungsnavigator mit allen 53 Wohnungen"
+          beschreibung="Wohnungsnavigator mit allen 32 Wohnungen"
         >
           <Wohnungsnavigator />
         </ExternerInhalt>

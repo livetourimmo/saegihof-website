@@ -1,6 +1,6 @@
 # Sägihof Therwil — Projektwebseite
 
-Projektwebseite für die 53 Eigentumswohnungen im Sägihof, Therwil.
+Projektwebseite für die 32 Eigentumswohnungen im Sägihof, Therwil.
 Vermarktung: welcome Home Immobilien.
 
 Gebaut mit **Next.js 15** (App Router), gehostet auf **Vercel**, Kontaktanfragen
@@ -163,7 +163,7 @@ bekommt eine Vorschau-URL.
 
 | Dienst | Wo | Zweck |
 |---|---|---|
-| liveTour Wohnungsnavigator | `/wohnungen` | Übersicht aller 53 Wohnungen |
+| liveTour Wohnungsnavigator | `/wohnungen` | Übersicht aller 32 Wohnungen |
 | Atlist | `/lage` | Interaktive Umgebungskarte |
 
 Die Schriften (Jost, IBM Plex Sans) werden selbst ausgeliefert. Es besteht
