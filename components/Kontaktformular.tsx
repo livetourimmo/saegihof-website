@@ -17,6 +17,7 @@ export type FormularVariante = 'wohnung' | 'thema' | 'ohne';
  * Deshalb Kontrollkästchen statt einer Auswahlliste.
  */
 const WOHNUNGEN = [
+  '2.5-Zimmer',
   '3.5-Zimmer',
   '4.5-Zimmer',
   'Gartenwohnung',

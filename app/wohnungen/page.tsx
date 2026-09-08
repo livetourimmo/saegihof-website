@@ -8,7 +8,7 @@ import ExternerInhalt from '@/components/ExternerInhalt';
 export const metadata: Metadata = {
   title: 'Wohnungen — Sägihof Therwil',
   description:
-    '32 Eigentumswohnungen im Sägihof Therwil. Von 3.5 bis 4.5 Zimmer, 89 bis 130 m². Entdecken Sie alle Wohnungen im Wohnungsnavigator.',
+    '32 Eigentumswohnungen in zwei Häusern im Sägihof Therwil. Von 2.5 bis 4.5 Zimmer, 67 bis 130 m². Entdecken Sie alle Wohnungen im Wohnungsnavigator.',
 };
 
 export default function WohnungenSeite() {
@@ -34,12 +34,13 @@ export default function WohnungenSeite() {
         <div className="section-text">
           <div className="eyebrow reveal">Angebot</div>
           <h2 className="reveal d1">
-            Von 3.5 bis 4.5 Zimmer.<br />Vom Garten bis unters Dach.
+            Von 2.5 bis 4.5 Zimmer.<br />Vom Garten bis unters Dach.
           </h2>
           <p className="body-text reveal d2">
-            Im Sägihof entstehen 32 Eigentumswohnungen mit Wohnflächen zwischen 89 und 130 m² — von
-            vielseitigen 3.5-Zimmer-Grundrissen über grosszügige 4.5-Zimmer-Wohnungen und
-            Gartenwohnungen bis zu den Attikawohnungen im obersten Geschoss.
+            Im Sägihof entstehen 32 Eigentumswohnungen in zwei Häusern mit Wohnflächen zwischen 67
+            und 130 m² — von kompakten 2.5-Zimmer-Wohnungen über vielseitige 3.5-Zimmer-Grundrisse
+            und grosszügige 4.5-Zimmer-Wohnungen und Gartenwohnungen bis zu den Attikawohnungen im
+            obersten Geschoss.
           </p>
           <p className="body-text reveal d2">
             Je nach Lage gehören private Sitzplätze, Loggien, grosszügige Balkone oder Gärten von

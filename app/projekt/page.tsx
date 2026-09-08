@@ -7,7 +7,7 @@ import Plandownload from '@/components/Plandownload';
 export const metadata: Metadata = {
   title: 'Der Sägihof — Über das Projekt',
   description:
-    'Vier Häuser, ein gemeinsamer Hof. Erfahren Sie mehr über das Wohnensemble Sägihof in Therwil — Umgebungsplan, Tiefgarage und Konzept.',
+    'Zwei Häuser, ein gemeinsamer Hof. Erfahren Sie mehr über das Wohnensemble Sägihof in Therwil — Umgebungsplan, Tiefgarage und Konzept.',
 };
 
 /* Die Pläne liegen zusätzlich als PDF bereit — Bild und Download zeigen
@@ -38,13 +38,13 @@ export default function ProjektSeite() {
         <div className="section-text">
           <div className="eyebrow reveal">Einleitung</div>
           <h2 className="reveal d1">
-            Vier Häuser.<br />Ein gemeinsamer Hof.
+            Zwei Häuser.<br />Ein gemeinsamer Hof.
           </h2>
           <p className="body-text reveal d2">
-            Der Sägihof ist als zusammenhängendes Wohnensemble gedacht. Vier Baukörper gruppieren
+            Der Sägihof ist als zusammenhängendes Wohnensemble gedacht. Zwei Baukörper gruppieren
             sich um einen begrünten Innenhof, der das Projekt räumlich und gestalterisch
-            zusammenhält. Spielplatz, Liegewiese, Wege und Bepflanzungen schaffen eine gemeinsame
-            Mitte, während die einzelnen Häuser ihre Eigenständigkeit behalten.
+            zusammenhält. Spielplatz, Wege und Bepflanzungen schaffen eine gemeinsame Mitte,
+            während die beiden Häuser ihre Eigenständigkeit behalten.
           </p>
           <p className="body-text reveal d2">
             Auch technisch ist das Projekt als Einheit konzipiert. Das Untergeschoss verbindet
@@ -78,7 +78,7 @@ export default function ProjektSeite() {
             {/* eslint-disable-next-line @next/next/no-img-element -- Plandarstellung, Grösse über CSS. */}
             <img
               src="/img/umgebungsplan.webp"
-              alt="Umgebungsplan Sägihof Therwil — die vier Häuser am Sägeweg und an der Oberwilerstrasse mit begrüntem Innenhof"
+              alt="Umgebungsplan Sägihof Therwil — die beiden Häuser am Sägeweg und an der Oberwilerstrasse mit begrüntem Innenhof"
               loading="lazy"
             />
             <span className="plan-figur-hinweis">Plan vergrössern</span>
@@ -90,9 +90,8 @@ export default function ProjektSeite() {
             Das Grün liegt<br />in der Mitte.
           </h2>
           <p className="body-text reveal d2">
-            Zwischen den vier Häusern spannt sich der zentrale Freiraum des Sägihofs auf. Hier
-            treffen Wege auf Grünflächen, Bäume auf Sitz- und Aufenthaltsbereiche und der
-            Spielplatz auf die Liegewiese.
+            Zwischen den beiden Häusern spannt sich der zentrale Freiraum des Sägihofs auf. Hier
+            treffen Wege auf Grünflächen und Bäume auf Sitz-, Aufenthalts- und Spielbereiche.
           </p>
           <p className="body-text reveal d2">
             Die Aussenräume der Gebäude orientieren sich bewusst zu dieser gemeinsamen Mitte. So
@@ -119,7 +118,7 @@ export default function ProjektSeite() {
             Oben Grün.<br />Unten verbunden.
           </h2>
           <p className="body-text reveal d2">
-            Unter dem Sägihof verbindet ein gemeinsames Untergeschoss alle vier Häuser. Hier
+            Unter dem Sägihof verbindet ein gemeinsames Untergeschoss beide Häuser. Hier
             befinden sich die Autoeinstellhalle sowie Keller-, Abstell- und Technikräume und der
             Veloraum.
           </p>
@@ -147,7 +146,7 @@ export default function ProjektSeite() {
             {/* eslint-disable-next-line @next/next/no-img-element -- Plandarstellung, Grösse über CSS. */}
             <img
               src="/img/tiefgaragenplan.webp"
-              alt="Tiefgaragenplan Sägihof Therwil — Einstellhalle mit den Parkfeldern der Häuser A, B1, B2 und B3, Besucherplätzen und Veloraum"
+              alt="Tiefgaragenplan Sägihof Therwil — Einstellhalle mit den Parkfeldern der beiden Häuser, Besucherplätzen und Veloraum"
               loading="lazy"
             />
             <span className="plan-figur-hinweis">Plan vergrössern</span>

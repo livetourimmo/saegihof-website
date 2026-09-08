@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description:
-    '32 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.',
+    '32 Eigentumswohnungen in zwei Häusern, mitten in Therwil. Mit grosszügigen Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.',
   openGraph: {
     type: 'website',
     locale: 'de_CH',

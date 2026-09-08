@@ -45,7 +45,7 @@ export default function Startseite() {
 
           <div className="hero-content-right">
             <p className="hero-desc reveal d1">
-              32 Eigentumswohnungen in vier Häusern, mitten in Therwil. Mit grosszügigen
+              32 Eigentumswohnungen in zwei Häusern, mitten in Therwil. Mit grosszügigen
               Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.
             </p>
             <Link href="/wohnungen" className="btn-primary reveal d2">
@@ -58,12 +58,12 @@ export default function Startseite() {
                 <div className="hero-stat-label">Eigentumswohnungen</div>
               </div>
               <div className="hero-stat">
-                <div className="hero-stat-num">4</div>
+                <div className="hero-stat-num">2</div>
                 <div className="hero-stat-label">Häuser mit Innenhof</div>
               </div>
               <div className="hero-stat">
                 <div className="hero-stat-num">
-                  89–130 <sup>m²</sup>
+                  67–130 <sup>m²</sup>
                 </div>
                 <div className="hero-stat-label">Wohnfläche</div>
               </div>
@@ -83,13 +83,21 @@ export default function Startseite() {
               Für jeden<br />Lebensabschnitt.
             </h2>
             <p className="body-text reveal d2">
-              32 Wohnungen in vier Häusern, von 89 bis 130 m². Ob grosszügig für die ganze
-              Familie oder mit eigenem Garten.
+              32 Wohnungen in zwei Häusern, von 67 bis 130 m². Ob kompakt für Singles und Paare,
+              grosszügig für die ganze Familie oder mit eigenem Garten.
             </p>
 
             <ul className="wohntypen reveal d2">
               <li className="wohntyp">
                 <span className="wohntyp-num">01</span>
+                <span className="wohntyp-name">
+                  2.5-Zimmer
+                  <small>Für Singles &amp; Paare</small>
+                </span>
+                <span className="wohntyp-area">ab 67 m²</span>
+              </li>
+              <li className="wohntyp">
+                <span className="wohntyp-num">02</span>
                 <span className="wohntyp-name">
                   3.5 &amp; 4.5-Zimmer
                   <small>Für Umsteiger und Familien, die Wohnkomfort schätzen</small>
@@ -97,7 +105,7 @@ export default function Startseite() {
                 <span className="wohntyp-area">89–115 m²</span>
               </li>
               <li className="wohntyp">
-                <span className="wohntyp-num">02</span>
+                <span className="wohntyp-num">03</span>
                 <span className="wohntyp-name">
                   Gartenwohnungen
                   <small>Eigener Garten &amp; Sitzplatz</small>
@@ -105,7 +113,7 @@ export default function Startseite() {
                 <span className="wohntyp-area">98–124 m²</span>
               </li>
               <li className="wohntyp">
-                <span className="wohntyp-num">03</span>
+                <span className="wohntyp-num">04</span>
                 <span className="wohntyp-name">
                   Attikawohnungen
                   <small>Terrasse &amp; Panorama</small>
@@ -134,12 +142,12 @@ export default function Startseite() {
             Ein Zuhause mit<br />Raum zum Leben.
           </h2>
           <p className="body-text reveal d2">
-            Der Sägihof wird von vier Häusern geprägt, die sich um einen gemeinsamen, begrünten
-            Innenhof anordnen. Mit Spielplatz, Liegewiese und viel Grün entsteht ein Ort, an dem
-            sich das Leben im Sägihof abspielt.
+            Der Sägihof wird von zwei Häusern geprägt, die sich um einen gemeinsamen, begrünten
+            Innenhof anordnen. Mit Spielplatz und viel Grün entsteht ein Ort, an dem sich das
+            Leben im Sägihof abspielt.
           </p>
           <p className="body-text reveal d2">
-            Unterirdisch verbindet die gemeinsame Einstellhalle die vier Häuser.
+            Unterirdisch verbindet die gemeinsame Einstellhalle die beiden Häuser.
           </p>
           <Link href="/projekt" className="btn-link reveal d3">
             Das Projekt entdecken
