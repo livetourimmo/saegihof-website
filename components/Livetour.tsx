@@ -112,7 +112,7 @@ export default function Livetour() {
               <path d="M1.6 1.1v19.8a1 1 0 0 0 1.53.85l15.3-9.9a1 1 0 0 0 0-1.7L3.13.25A1 1 0 0 0 1.6 1.1Z" />
             </svg>
           </span>
-          <span className="livetour-label">Livetour Therwil · 45 s</span>
+          <span className="livetour-label">Therwil jetzt entdecken</span>
         </button>
       </div>
 
