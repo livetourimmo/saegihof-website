@@ -50,6 +50,7 @@ components/
   Kontaktformular.tsx  Formular mit den drei Varianten
   Wohnungsgalerie.tsx  Fotogitter der Startseite samt Grossansicht
   Wohnungsnavigator.tsx  Eingebetteter Navigator von liveTour
+  Livetour.tsx         45-Sekunden-Film über Therwil, Klick im Hero der Lageseite
   ScrollEffects.tsx    Navigationsleiste beim Scrollen + Einblend-Animationen
   Icons.tsx            Inline-Symbole
 

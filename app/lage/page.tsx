@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 import Herovideo from '@/components/Herovideo';
+import Livetour from '@/components/Livetour';
 import ExternerInhalt from '@/components/ExternerInhalt';
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function LageSeite() {
       <div className="page-hero">
         <Herovideo />
         <div className="page-hero-overlay"></div>
+        <Livetour />
         <div className="page-hero-content">
           <div className="page-hero-eyebrow">Sägeweg · Therwil</div>
           <h1>

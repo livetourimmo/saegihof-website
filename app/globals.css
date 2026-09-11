@@ -758,6 +758,21 @@ h2 {
   color: rgba(255, 255, 255, 0.4);
 }
 
+/* Grossansicht der Livetour. Anders als beim Foto bestimmt hier das Video
+   die Kante: Die Breite ergibt sich aus der Bildschirmhoehe, damit der Film
+   im 16:9-Format ohne schwarze Raender in die Flaeche passt. */
+.lightbox-video-wrap {
+  aspect-ratio: 16 / 9;
+  width: min(92vw, calc(84vh * 16 / 9), 1600px);
+  background: #000;
+}
+
+.lightbox-video-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 #kontakt {
   padding: 6rem 3rem;
 }
@@ -2322,6 +2337,89 @@ h1 {
   opacity: 1;
 }
 
+/* ── Livetour: Auslöser im Hero der Lageseite ──────────────────────────────
+   Sitzt ueber dem Verlauf, aber oberhalb der Ueberschrift. Die Einblendung
+   traegt die Positionierung, der Knopf bleibt darin im Fluss: `.reveal`
+   animiert ueber `transform`, was sich mit einem Zentrieren per `translate`
+   am selben Element gegenseitig aufheben wuerde. */
+.livetour-einblendung {
+  position: absolute;
+  z-index: 3;
+  top: 40%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.livetour-knopf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  font-family: var(--font-jost), sans-serif;
+}
+
+.livetour-knopf:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 6px;
+}
+
+.livetour-kreis {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(15, 28, 18, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Das Dreieck steht optisch mittig, wenn es leicht nach rechts rueckt. */
+.livetour-kreis svg {
+  margin-left: 4px;
+  fill: var(--white);
+  transition: fill 0.3s ease;
+}
+
+.livetour-knopf:hover .livetour-kreis,
+.livetour-knopf:focus-visible .livetour-kreis {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: transparent;
+  transform: scale(1.06);
+}
+
+.livetour-knopf:hover .livetour-kreis svg,
+.livetour-knopf:focus-visible .livetour-kreis svg {
+  fill: var(--forest);
+}
+
+.livetour-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(15, 28, 18, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .livetour-kreis {
+    transition: none;
+  }
+
+  .livetour-knopf:hover .livetour-kreis,
+  .livetour-knopf:focus-visible .livetour-kreis {
+    transform: none;
+  }
+}
+
 /* "Staedtisch angebunden." soll geschlossen auf einer Zeile stehen.
    Dafuer muss die Breitengrenze der Ueberschrift hier weichen. */
 .page-lage .einleitung-text h2 {
@@ -2778,6 +2876,26 @@ h1 {
 
   .page-lage .page-hero h1 {
     font-size: 1.75rem;
+  }
+
+  /* Auf dem Telefon rueckt der Auslöser hoeher: Der Hero ist flacher und die
+     zweizeilige Ueberschrift beansprucht anteilig mehr Platz. */
+  .livetour-einblendung {
+    top: 32%;
+  }
+
+  .livetour-kreis {
+    width: 62px;
+    height: 62px;
+  }
+
+  .livetour-knopf {
+    gap: 0.85rem;
+  }
+
+  .livetour-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
   }
 }
 
