@@ -83,8 +83,8 @@ export default function Startseite() {
               Für jeden<br />Lebensabschnitt.
             </h2>
             <p className="body-text reveal d2">
-              32 Wohnungen in zwei Häusern, von 67 bis 130 m². Ob kompakt für Singles und Paare oder
-              grosszügig für die ganze Familie mit eigenem Garten – hier finden Sie Ihr neues Zuhause.
+              32 Wohnungen in zwei Häusern, von 67 bis 130 m². Ob kompakt für Singles, Paare oder
+              grosszügig für die ganze Familie mit eigenem Garten.
             </p>
 
             <ul className="wohntypen reveal d2">
