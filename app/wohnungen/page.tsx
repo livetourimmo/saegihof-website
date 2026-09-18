@@ -39,7 +39,7 @@ export default function WohnungenSeite() {
           <p className="body-text reveal d2">
             Im Sägihof entstehen 32 Eigentumswohnungen in zwei Häusern mit Wohnflächen zwischen 67
             und 130 m² — von kompakten 2.5-Zimmer-Wohnungen über vielseitige 3.5-Zimmer-Grundrisse
-            und grosszügige 4.5-Zimmer-Wohnungen und Gartenwohnungen bis zu den Attikawohnungen im
+            und grosszügige 4.5-Zimmer-Wohnungen mit Garten bis zu den Attikawohnungen im
             obersten Geschoss.
           </p>
           <p className="body-text reveal d2">

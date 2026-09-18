@@ -78,7 +78,7 @@ export default function AusbauSeite() {
           <h2 className="reveal d1">So wird aus einer Wohnung Ihr Zuhause.</h2>
           <p className="body-text reveal d2">
             Beim Innenausbau bietet der Sägihof bewusst viel Spielraum. Küche, Nasszellen,
-            Bodenbeläge und Materialien können im Rahmen der vorgesehenen Käuferbudgets individuell
+            Bodenbeläge und Wandoberflächen können im Rahmen der vorgesehenen Käuferbudgets individuell
             gewählt und auf den eigenen Stil abgestimmt werden.
           </p>
           <p className="body-text reveal d2">

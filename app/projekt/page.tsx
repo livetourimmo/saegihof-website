@@ -103,7 +103,7 @@ export default function ProjektSeite() {
             href={UMGEBUNGSPLAN_PDF}
             titel="Umgebungsplan"
             dateiname="saegihof-umgebungsplan.pdf"
-            groesse="PDF · 5 MB"
+            groesse="PDF · 2,2 MB"
           />
         </div>
       </section>

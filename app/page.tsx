@@ -84,7 +84,7 @@ export default function Startseite() {
             </h2>
             <p className="body-text reveal d2">
               32 Wohnungen in zwei Häusern, von 67 bis 130 m². Ob kompakt für Singles und Paare,
-              grosszügig für die ganze Familie oder mit eigenem Garten.
+              grosszügig für die ganze Familie oder mit eigenem Garten – hier finden Sie Ihr neues Zuhause.
             </p>
 
             <ul className="wohntypen reveal d2">
@@ -100,7 +100,7 @@ export default function Startseite() {
                 <span className="wohntyp-num">02</span>
                 <span className="wohntyp-name">
                   3.5 &amp; 4.5-Zimmer
-                  <small>Für Umsteiger und Familien, die Wohnkomfort schätzen</small>
+                  <small>Für Familien und alle, die ein neues Zuhause mit vertrautem Wohnkomfort suchen.</small>
                 </span>
                 <span className="wohntyp-area">89–115 m²</span>
               </li>
@@ -143,7 +143,7 @@ export default function Startseite() {
           </h2>
           <p className="body-text reveal d2">
             Der Sägihof wird von zwei Häusern geprägt, die sich um einen gemeinsamen, begrünten
-            Innenhof anordnen. Mit Spielplatz und viel Grün entsteht ein Ort, an dem sich das
+            Innenhof anordnen. Mit einem Spielplatz und viel Grün entsteht ein Ort, an dem sich das
             Leben im Sägihof abspielt.
           </p>
           <p className="body-text reveal d2">

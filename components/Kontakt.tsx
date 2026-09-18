@@ -80,7 +80,7 @@ export default function Kontakt({
           <div className="eyebrow reveal">Kontakt</div>
           <h2 className="reveal d1">{titel}</h2>
           <p className="body-text reveal d2">
-            Wir beraten Sie gerne persönlich, vor Ort oder telefonisch.
+            Wir beraten Sie gerne persönlich und ganz unverbindlich.
           </p>
 
           <p className="kontakt-personen-label reveal d3">Ihre Ansprechpersonen</p>
