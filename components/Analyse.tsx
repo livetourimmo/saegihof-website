@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { useEinwilligung } from './Einwilligung';
+import { googleBefehl } from '@/lib/analytics';
 
 /**
  * Mess-ID aus der Umgebung. Fehlt sie — etwa in einer lokalen Umgebung ohne
@@ -28,8 +29,7 @@ const MESS_ID = process.env.NEXT_PUBLIC_GA_ID;
  */
 function standardAufAbgelehnt() {
   if (typeof window === 'undefined') return;
-  window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push([
+  googleBefehl(
     'consent',
     'default',
     {
@@ -38,7 +38,7 @@ function standardAufAbgelehnt() {
       ad_user_data: 'denied',
       ad_personalization: 'denied',
     },
-  ]);
+  );
 }
 
 /**
@@ -68,12 +68,11 @@ export default function Analyse() {
   useEffect(() => {
     if (typeof window === 'undefined' || !MESS_ID) return;
 
-    window.dataLayer = window.dataLayer ?? [];
-    window.dataLayer.push([
+    googleBefehl(
       'consent',
       'update',
       { analytics_storage: analyseErlaubt ? 'granted' : 'denied' },
-    ]);
+    );
 
     // Beim Widerruf reicht es nicht, das Skript-Element zu entfernen: gtag.js
     // ist dann längst ausgeführt und liefe bis zum nächsten Seitenaufbau

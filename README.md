@@ -129,10 +129,10 @@ fehl, bleibt die Anfrage ebenfalls erhalten.
 3. Unter **Settings → Environment Variables** alle Werte aus `.env.example`
    für *Production* **und** *Preview* eintragen.
 4. Domain unter **Settings → Domains** verbinden.
-5. Danach die Domain an drei Stellen eintragen:
-   - `app/layout.tsx` → `metadataBase`
-   - `app/sitemap.ts` → `basis`
-   - `app/robots.ts` → `sitemap`
+5. Die kanonische Live-Domain ist zentral in `lib/seo.ts` hinterlegt:
+   `https://www.saegihof-therwil.ch` (Domain ohne www leitet dorthin weiter).
+6. Analytics nur für Production konfigurieren, damit Vorschauen die Statistik
+   nicht beeinflussen. Einrichtung und Abnahme: [SEO und Messung](docs/seo-und-tracking.md).
 
 Jeder Push auf den Hauptbranch löst ein Deployment aus, jeder Pull Request
 bekommt eine Vorschau-URL.
@@ -149,10 +149,9 @@ bekommt eine Vorschau-URL.
       `filter: brightness(0) invert(1)` darüber, wodurch das gesamte Quadrat
       weiss wird und das Logo unsichtbar ist. Abhilfe: freigestellte Fassung als
       SVG oder PNG mit Transparenz, etwa 200 px hoch.
-- [ ] **Domain** an den drei oben genannten Stellen eintragen
+- [x] **Domain** zentral in `lib/seo.ts` hinterlegt
 - [ ] **Favicon** — noch keines hinterlegt (`app/icon.png` ergänzen)
-- [ ] **Vorschaubild** für das Teilen in sozialen Netzwerken
-      (`app/opengraph-image.png`, 1200×630 px)
+- [x] **Vorschaubild** und seitenbezogene Open-Graph-Daten hinterlegt
 - [ ] Platzhalter befüllen, sobald die Inhalte vorliegen: Umgebungsplan,
       Tiefgaragenplan, virtueller Rundgang, Moodboard, Drohnenvideo
 - [ ] Google-Maps-Einbettung auf der Startseite — im Original auskommentiert und

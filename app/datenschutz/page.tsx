@@ -144,8 +144,10 @@ export default function DatenschutzSeite() {
         <p>
           Mit Ihrer Zustimmung setzen wir Google Analytics 4 ein, einen Dienst von Google. Er hilft
           uns zu verstehen, wie diese Webseite genutzt wird — etwa welche Seiten aufgerufen werden,
-          wie lange Besucherinnen und Besucher bleiben und über welchen Weg sie zu uns gefunden
-          haben. Wir nutzen die Auswertung ausschliesslich, um das Angebot zu verbessern.
+          wie lange Besucherinnen und Besucher bleiben, über welchen Weg sie zu uns gefunden
+          haben und ob eine Kontaktanfrage erfolgreich übermittelt wurde. Bei dieser Erfolgsmessung
+          übertragen wir nur die Herkunftsseite des Formulars, keine Namen, E-Mail-Adressen,
+          Telefonnummern oder Nachrichten. Wir nutzen die Auswertung ausschliesslich, um das Angebot zu verbessern.
         </p>
         <p>
           Ohne Ihre Zustimmung wird das Analysewerkzeug nicht eingebunden. Erst danach wird es

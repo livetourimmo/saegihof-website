@@ -1,13 +1,9 @@
-import type { Metadata } from 'next';
+import { seitenMetadaten } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 
-export const metadata: Metadata = {
-  title: 'Ausbau — Sägihof Therwil',
-  description:
-    'Individueller Innenausbau im Sägihof Therwil. Grosszügige Käuferbudgets für Küche, Nasszellen und Bodenbeläge. Virtueller Rundgang inklusive.',
-};
+export const metadata = seitenMetadaten('/ausbau');
 
 const BUDGETS = [
   { kategorie: 'Küche', betrag: "CHF 41'000", einheit: 'pro Wohnung' },

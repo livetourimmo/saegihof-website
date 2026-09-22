@@ -1,12 +1,10 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', '/impressum', '/datenschutz'],
-    },
-    sitemap: 'https://saegihof-therwil.ch/sitemap.xml', // TODO: auf die Live-Domain anpassen
+    // Rechtsseiten müssen crawlbar sein, damit Google ihr noindex lesen kann.
+    rules: { userAgent: '*', allow: '/', disallow: ['/api/'] },
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

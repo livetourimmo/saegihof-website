@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import { seitenMetadaten } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
@@ -6,11 +6,7 @@ import Herovideo from '@/components/Herovideo';
 import Livetour from '@/components/Livetour';
 import ExternerInhalt from '@/components/ExternerInhalt';
 
-export const metadata: Metadata = {
-  title: 'Lage — Sägihof Therwil',
-  description:
-    'Sägihof Therwil: Dörflich wohnen, städtisch angebunden. Direkte Tramverbindung nach Basel, viel Grünraum und beste Infrastruktur im Leimental.',
-};
+export const metadata = seitenMetadaten('/lage');
 
 const ZAHLEN = [
   { num: '52 %', desc: 'Steuerfuss', verzoegerung: '' },

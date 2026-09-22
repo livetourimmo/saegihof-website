@@ -1,15 +1,11 @@
-import type { Metadata } from 'next';
+import { seitenMetadaten } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 import Wohnungsnavigator from '@/components/Wohnungsnavigator';
 import ExternerInhalt from '@/components/ExternerInhalt';
 
-export const metadata: Metadata = {
-  title: 'Wohnungen — Sägihof Therwil',
-  description:
-    '32 Eigentumswohnungen in zwei Häusern im Sägihof Therwil. Von 2.5 bis 4.5 Zimmer, 67 bis 130 m². Entdecken Sie alle Wohnungen im Wohnungsnavigator.',
-};
+export const metadata = seitenMetadaten('/wohnungen');
 
 export default function WohnungenSeite() {
   return (
@@ -25,7 +21,7 @@ export default function WohnungenSeite() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <div className="page-hero-eyebrow">Sägeweg · Therwil</div>
-          <h1>Wohnungen</h1>
+          <h1>Eigentumswohnungen in Therwil</h1>
         </div>
       </div>
 

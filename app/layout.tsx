@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SEO, SITE_URL } from '@/lib/seo';
 import { Jost, IBM_Plex_Sans } from 'next/font/google';
 import ScrollEffects from '@/components/ScrollEffects';
 import { EinwilligungProvider } from '@/components/Einwilligung';
@@ -32,15 +33,10 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  // TODO: Auf die spätere Live-Domain anpassen, sobald sie feststeht.
-  // Erst dann erzeugen Next.js und die Sitemap absolute URLs.
-  metadataBase: new URL('https://saegihof-therwil.ch'),
-  title: {
-    default: 'Sägihof Therwil — 32 Eigentumswohnungen',
-    template: '%s',
-  },
-  description:
-    '32 Eigentumswohnungen in zwei Häusern, mitten in Therwil. Mit grosszügigen Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.',
+  metadataBase: new URL(SITE_URL),
+  title: { default: SEO['/'].title, template: '%s' },
+  description: SEO['/'].description,
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   openGraph: {
     type: 'website',
     locale: 'de_CH',

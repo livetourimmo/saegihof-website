@@ -2,13 +2,14 @@
   "name": "saegihof-webseite",
   "version": "1.0.0",
   "private": true,
-  "description": "Projektwebseite Sägihof Therwil — 53 Eigentumswohnungen",
+  "description": "Projektwebseite Sägihof Therwil — 32 Eigentumswohnungen",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^15.5.23",

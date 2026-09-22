@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { messeKontaktanfrage } from '@/lib/analytics';
 import Link from 'next/link';
 import { PfeilIcon } from './Icons';
 
@@ -36,11 +37,14 @@ export default function Kontaktformular({
   variante: FormularVariante;
   quelle: string;
 }) {
+  const sendet = useRef(false);
   const [status, setStatus] = useState<Status>('bereit');
   const [fehlertext, setFehlertext] = useState('');
 
   async function absenden(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (sendet.current) return;
+    sendet.current = true;
     setStatus('sendet');
     setFehlertext('');
 
@@ -55,6 +59,7 @@ export default function Kontaktformular({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          website: daten.get('website'),
           name: daten.get('name'),
           email: daten.get('email'),
           telefon: daten.get('telefon') || null,
@@ -71,7 +76,13 @@ export default function Kontaktformular({
       }
 
       setStatus('gesendet');
+      if (!daten.get('website')) {
+        // Ein Messfehler darf eine erfolgreich gespeicherte Anfrage nie als
+        // fehlgeschlagen darstellen und damit eine zweite Einsendung auslösen.
+        try { messeKontaktanfrage(quelle); } catch { /* Messung ist optional. */ }
+      }
     } catch (fehler) {
+      sendet.current = false;
       setStatus('fehler');
       setFehlertext(
         fehler instanceof Error

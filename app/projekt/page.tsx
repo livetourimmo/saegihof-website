@@ -1,14 +1,10 @@
-import type { Metadata } from 'next';
+import { seitenMetadaten } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
 import Plandownload from '@/components/Plandownload';
 
-export const metadata: Metadata = {
-  title: 'Der Sägihof — Über das Projekt',
-  description:
-    'Zwei Häuser, ein gemeinsamer Hof. Erfahren Sie mehr über das Wohnensemble Sägihof in Therwil — Umgebungsplan, Tiefgarage und Konzept.',
-};
+export const metadata = seitenMetadaten('/projekt');
 
 /* Die Pläne liegen zusätzlich als PDF bereit — Bild und Download zeigen
    dieselbe Datei, damit der Plan auch in voller Auflösung lesbar bleibt. */

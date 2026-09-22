@@ -1,3 +1,4 @@
+import { seitenMetadaten, SITE_URL } from '@/lib/seo';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -5,10 +6,27 @@ import Kontakt from '@/components/Kontakt';
 import Wohnungsgalerie from '@/components/Wohnungsgalerie';
 import { PfeilIcon } from '@/components/Icons';
 
+export const metadata = seitenMetadaten('/');
+
 export default function Startseite() {
   return (
     <div className="page-start">
       <Navbar aktiv="/" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: `${SITE_URL}/`, name: 'Sägihof Therwil', inLanguage: 'de-CH' },
+            { '@type': 'ApartmentComplex', '@id': `${SITE_URL}/#saegihof`, name: 'Sägihof Therwil', url: `${SITE_URL}/projekt`,
+              description: '32 Eigentumswohnungen in zwei Häusern mit begrüntem Innenhof in Therwil.',
+              numberOfAccommodationUnits: 32,
+              address: { '@type': 'PostalAddress', addressLocality: 'Therwil', postalCode: '4106', addressCountry: 'CH' },
+              image: `${SITE_URL}/img/innenhof.webp`,
+            },
+          ],
+        }).replace(/</g, '\\u003c') }}
+      />
 
       {/* ══ HERO (full-bleed) ══ */}
       <section className="hero">
@@ -80,7 +98,7 @@ export default function Startseite() {
           <div className="wohnungen-info">
             <div className="eyebrow reveal">Wohnungen</div>
             <h2 className="reveal d1">
-              Für jeden<br />Lebensabschnitt.
+              Eigentumswohnungen in Therwil.<br />Für jeden Lebensabschnitt.
             </h2>
             <p className="body-text reveal d2">
               32 Wohnungen in zwei Häusern, von 67 bis 130 m². Ob kompakt für Singles, Paare oder
