@@ -11,8 +11,10 @@ Stand: 22.09.2026.
 - GA4-Mess-ID im ausgelieferten JavaScript: `G-Q9472FVECF`. Screenshot bestätigt
   `NEXT_PUBLIC_GA_ID` nur für Production. Dies belegt die Einbindung, nicht den
   korrekten Dateneingang in der GA4-Property.
-- Kein direkter Google-Ads-Tag im geprüften Code. Search-Console-Zugang,
-  DNS-Verifizierung und bestehende Kontoverknüpfungen wurden nicht bestätigt.
+- Kein direkter Google-Ads-Tag im geprüften Code. Ein öffentlicher
+  `google-site-verification`-TXT-Eintrag ist im DNS bereits vorhanden. Ob die
+  zugehörige Search-Console-Property bestätigt ist, wer darauf Zugriff hat und
+  welche Kontoverknüpfungen bestehen, bleibt im jeweiligen Google-Konto zu prüfen.
 
 ## Umgesetzt
 
@@ -40,6 +42,8 @@ Honigtopf wird jetzt auch tatsächlich an den Server übergeben.
 ## Search Console
 
 1. Bestehende Property für `saegihof-therwil.ch` suchen, bevor eine neue angelegt wird.
+   Ein Google-Verifizierungs-TXT-Eintrag ist bereits vorhanden; keinen zweiten
+   Eintrag und keine neue Variable anlegen, wenn diese Property schon bestätigt ist.
 2. Falls nicht vorhanden: Domain-Property anlegen und den von Google gelieferten
    TXT-Eintrag beim DNS-Anbieter setzen. Sie umfasst www/non-www und HTTP/HTTPS.
 3. Alternativ URL-Präfix-Property `https://www.saegihof-therwil.ch/` verwenden.
