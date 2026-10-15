@@ -8,6 +8,20 @@ import { PfeilIcon } from '@/components/Icons';
 
 export const metadata = seitenMetadaten('/');
 
+function Bezugsplakette() {
+  return (
+    <Link
+      href="/wohnungen"
+      className="hero-bezug"
+      aria-label="Bezug ab Mitte 2028 – Wohnungen entdecken"
+    >
+      <span className="hero-bezug-label">Bezug ab</span>
+      <span className="hero-bezug-zeit">Mitte</span>
+      <span className="hero-bezug-jahr">2028</span>
+    </Link>
+  );
+}
+
 export default function Startseite() {
   return (
     <div className="page-start">
@@ -39,15 +53,7 @@ export default function Startseite() {
           />
         </div>
         <div className="hero-overlay"></div>
-        <Link
-          href="/wohnungen"
-          className="hero-bezug"
-          aria-label="Bezug ab Mitte 2028 – Wohnungen entdecken"
-        >
-          <span className="hero-bezug-label">Bezug ab</span>
-          <span className="hero-bezug-zeit">Mitte</span>
-          <span className="hero-bezug-jahr">2028</span>
-        </Link>
+        <Bezugsplakette />
 
         <div className="hero-content">
           <div className="hero-content-left">
@@ -105,6 +111,9 @@ export default function Startseite() {
 
       {/* ══ WOHNUNGEN ══ */}
       <section id="wohnungen">
+        <div className="bezug-mobil">
+          <Bezugsplakette />
+        </div>
         <div className="wohnungen-grid">
           <div className="wohnungen-info">
             <div className="eyebrow reveal">Wohnungen</div>

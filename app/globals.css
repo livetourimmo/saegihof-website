@@ -3288,20 +3288,64 @@ h1 {
   .hero-bezug-jahr { font-size: 2.1rem; }
 }
 
+.bezug-mobil {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .page-start .hero {
     min-height: 88svh;
-    padding-top: 260px;
+    padding-top: 180px;
   }
 
-  .hero-bezug {
-    top: 110px;
-    width: 120px;
+  .hero > .hero-bezug {
+    display: none;
   }
 
-  .hero-bezug-label { font-size: 0.6rem; margin-bottom: 0.3rem; }
-  .hero-bezug-zeit { font-size: 1.25rem; }
-  .hero-bezug-jahr { font-size: 1.85rem; }
+  .page-start #wohnungen {
+    padding-top: 1.5rem;
+  }
+
+  .bezug-mobil {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+  }
+
+  .bezug-mobil .hero-bezug {
+    position: relative;
+    inset: auto;
+    width: 140px;
+    flex-shrink: 0;
+    background: var(--forest);
+    color: var(--cream);
+    border-color: var(--gold-light);
+    box-shadow: 0 5px 16px rgba(15, 28, 18, 0.16);
+  }
+
+  .bezug-mobil .hero-bezug::before {
+    border-color: rgba(201, 173, 103, 0.6);
+  }
+
+  .bezug-mobil .hero-bezug:hover {
+    background: var(--forest-deep);
+  }
+
+  .bezug-mobil .hero-bezug-label {
+    font-size: 0.65rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .bezug-mobil .hero-bezug-zeit {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .bezug-mobil .hero-bezug-jahr {
+    color: var(--gold-light);
+    font-size: 2.25rem;
+    font-weight: 400;
+  }
 }
 
 .rundgang-embed {
