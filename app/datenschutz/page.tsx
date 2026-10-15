@@ -113,6 +113,9 @@ export default function DatenschutzSeite() {
             «Wohnungen»
           </li>
           <li>
+            <strong>CloudPano</strong> — virtueller Wohnungsrundgang auf der Seite «Ausbau»
+          </li>
+          <li>
             <strong>Atlist</strong> — interaktive Umgebungskarte auf der Seite «Lage»
           </li>
         </ul>

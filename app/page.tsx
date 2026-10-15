@@ -66,10 +66,16 @@ export default function Startseite() {
               32 Eigentumswohnungen in zwei Häusern, mitten in Therwil. Mit grosszügigen
               Grundrissen, hochwertigen Materialien und einem begrünten Innenhof.
             </p>
-            <Link href="/wohnungen" className="btn-primary reveal d2">
-              Wohnungen entdecken
-              <PfeilIcon />
-            </Link>
+            <div className="hero-aktionen reveal d2">
+              <Link href="/wohnungen" className="btn-primary">
+                Wohnungen entdecken
+                <PfeilIcon />
+              </Link>
+              <Link href="/wohnungen" className="btn-primary hero-bezug">
+                Bezug ab Mitte 2028
+                <PfeilIcon />
+              </Link>
+            </div>
             <div className="hero-stats reveal d3">
               <div className="hero-stat">
                 <div className="hero-stat-num">32</div>

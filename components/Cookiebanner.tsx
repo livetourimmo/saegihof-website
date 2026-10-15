@@ -7,7 +7,7 @@ import { useEinwilligung } from './Einwilligung';
  * Hinweisleiste am unteren Rand, solange noch keine Wahl getroffen wurde.
  *
  * Es gibt hier genau zwei Dinge zu entscheiden, und beide hängen zusammen:
- * die Reichweitenmessung und die beiden eingebetteten Fremdinhalte. Eine
+ * die Reichweitenmessung und die eingebetteten Fremdinhalte. Eine
  * Auswahl nach vielen Kategorien wäre vorgetäuschte Genauigkeit — mehr als
  * diese Punkte gibt es auf dieser Webseite nicht.
  *
@@ -28,8 +28,8 @@ export default function Cookiebanner() {
           </p>
           <p>
             Für den Betrieb dieser Webseite ist nichts davon nötig. Mit Ihrer Zustimmung messen wir
-            die Nutzung mit Google Analytics und laden den Wohnungsnavigator sowie die
-            Umgebungskarte von den Servern ihrer Anbieter. Lehnen Sie ab, werden weder Cookies
+            die Nutzung mit Google Analytics und laden den Wohnungsnavigator, den virtuellen
+            Rundgang sowie die Umgebungskarte von den Servern ihrer Anbieter. Lehnen Sie ab, werden weder Cookies
             gesetzt noch Daten an Dritte übertragen. Näheres in der{' '}
             <Link href="/datenschutz">Datenschutzerklärung</Link>.
           </p>

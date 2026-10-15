@@ -7,7 +7,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
  *
  * Zwei Dinge hängen daran, und beide sind ohne Zustimmung vollständig aus:
  *
- *  • **Fremde Inhalte** — Wohnungsnavigator und Umgebungskarte werden von den
+ *  • **Fremde Inhalte** — Wohnungsnavigator, Rundgang und Umgebungskarte werden von den
  *    Servern ihrer Anbieter geladen, die dabei die IP-Adresse erfahren.
  *  • **Reichweitenmessung** — Google Analytics 4. Das Skript wird gar nicht
  *    erst eingebunden, solange keine Zustimmung vorliegt; ohne Skript gibt es
@@ -22,7 +22,7 @@ const SPEICHERSCHLUESSEL = 'saegihof-einwilligung';
 
 type Kontextwert = {
   wahl: Wahl;
-  /** Dürfen Navigator und Karte von fremden Servern geladen werden? */
+  /** Dürfen Navigator, Rundgang und Karte von fremden Servern geladen werden? */
   fremdinhalteErlaubt: boolean;
   /** Darf Google Analytics geladen werden? */
   analyseErlaubt: boolean;

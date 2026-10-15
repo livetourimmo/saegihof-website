@@ -2,14 +2,15 @@ import { seitenMetadaten } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Kontakt from '@/components/Kontakt';
+import ExternerInhalt from '@/components/ExternerInhalt';
 
 export const metadata = seitenMetadaten('/ausbau');
 
 const BUDGETS = [
   { kategorie: 'Küche', betrag: "CHF 41'000", einheit: 'pro Wohnung' },
-  { kategorie: 'Nasszellen', betrag: "CHF 23'000", einheit: 'pro Wohnung' },
+  { kategorie: 'Nasszellen', betrag: "ab CHF 21'000", einheit: 'pro Wohnung' },
   { kategorie: 'Plättli Wand & Boden', betrag: 'CHF 100', einheit: 'pro m²' },
-  { kategorie: 'Parkett Bodenfläche', betrag: 'CHF 140', einheit: 'pro m²' },
+  { kategorie: 'Parkett Bodenfläche', betrag: 'CHF 120', einheit: 'pro m²' },
 ];
 
 /*
@@ -108,29 +109,27 @@ export default function AusbauSeite() {
           </div>
         </div>
 
-        {/*
-          Platzhalter aus dem Original. Sobald der Rundgang bereitsteht, wird der
-          Einbettungscode (iFrame) hier anstelle des Platzhalters eingesetzt.
-        */}
-        <div className="rundgang-placeholder reveal">
-          <div className="rundgang-placeholder-inner">
-            <div className="rundgang-icon">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                <circle cx="14" cy="14" r="9" stroke="currentColor" strokeWidth="1.2" />
-                <ellipse cx="14" cy="14" rx="4.5" ry="9" stroke="currentColor" strokeWidth="1.2" />
-                <line x1="5" y1="14" x2="23" y2="14" stroke="currentColor" strokeWidth="1.2" />
-                <path
-                  d="M14 5C11 7.5 9.5 10.5 9.5 14S11 20.5 14 23"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <div className="rundgang-label">Virtueller Rundgang</div>
-            <div className="rundgang-sublabel">Wird hier eingebettet</div>
-          </div>
+        <div className="rundgang-embed reveal">
+          <ExternerInhalt anbieter="CloudPano" beschreibung="Virtueller Wohnungsrundgang Sägihof Therwil">
+            <iframe
+              src="https://app.cloudpano.com/tours/oZOjLA-vZ8?sceneId=tupwV8UEmN"
+              title="Virtueller Wohnungsrundgang Sägihof Therwil"
+              width="100%"
+              height="600"
+              loading="lazy"
+              allow="fullscreen; gyroscope; accelerometer"
+              allowFullScreen
+            />
+          </ExternerInhalt>
         </div>
+        <a
+          href="https://app.cloudpano.com/tours/oZOjLA-vZ8?sceneId=tupwV8UEmN"
+          className="btn-link rundgang-direktlink"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rundgang in neuem Fenster öffnen
+        </a>
       </section>
 
       <div className="section-divider"></div>

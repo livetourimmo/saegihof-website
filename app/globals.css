@@ -3196,3 +3196,50 @@ h1 {
     font-weight: 500;
   }
 }
+
+/* Startseite: Wohnungsangebot und Bezugstermin gemeinsam im Hero. */
+.hero-aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.hero .hero-aktionen .btn-primary {
+  margin-bottom: 0;
+}
+
+.hero .hero-bezug {
+  background: var(--white);
+  color: var(--forest-deep);
+}
+
+.hero .hero-bezug:hover {
+  background: var(--cream);
+}
+
+.rundgang-embed {
+  background: var(--forest-deep);
+}
+
+.rundgang-embed iframe {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 70svh, 760px);
+  border: 0;
+}
+
+.rundgang-direktlink {
+  margin-top: 1.25rem;
+}
+
+/* Lange Wohnungsüberschrift darf das mobile Raster nicht verbreitern. */
+.wohnungen-info,
+.wohnungen-photos {
+  min-width: 0;
+}
+
+.wohnungen-info h2 {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
