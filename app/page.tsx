@@ -39,6 +39,15 @@ export default function Startseite() {
           />
         </div>
         <div className="hero-overlay"></div>
+        <Link
+          href="/wohnungen"
+          className="hero-bezug"
+          aria-label="Bezug ab Mitte 2028 – Wohnungen entdecken"
+        >
+          <span className="hero-bezug-label">Bezug ab</span>
+          <span className="hero-bezug-zeit">Mitte</span>
+          <span className="hero-bezug-jahr">2028</span>
+        </Link>
 
         <div className="hero-content">
           <div className="hero-content-left">
@@ -69,10 +78,6 @@ export default function Startseite() {
             <div className="hero-aktionen reveal d2">
               <Link href="/wohnungen" className="btn-primary">
                 Wohnungen entdecken
-                <PfeilIcon />
-              </Link>
-              <Link href="/wohnungen" className="btn-primary hero-bezug">
-                Bezug ab Mitte 2028
                 <PfeilIcon />
               </Link>
             </div>
