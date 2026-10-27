@@ -69,8 +69,8 @@ export default function DatenschutzSeite() {
         </ul>
         <p>
           Diese Angaben verwenden wir ausschliesslich dazu, Ihre Anfrage zu bearbeiten und mit
-          Ihnen in Kontakt zu treten. Sie werden in einer Datenbank gespeichert und zusätzlich per
-          E-Mail an das Vermarktungsteam übermittelt. Eine Weitergabe an weitere Dritte zu
+          Ihnen in Kontakt zu treten. Sie werden per E-Mail an das Vermarktungsteam übermittelt
+          und nicht in einer Datenbank der Webseite gespeichert. Eine Weitergabe an weitere Dritte zu
           Werbezwecken findet nicht statt. Die Angabe der Daten erfolgt freiwillig; ohne Name,
           E-Mail-Adresse und Nachricht können wir Ihre Anfrage jedoch nicht bearbeiten.
         </p>
@@ -82,10 +82,6 @@ export default function DatenschutzSeite() {
             <strong>Vercel</strong> — Hosting und Auslieferung der Webseite, einschliesslich der
             oben beschriebenen Verbindungsdaten, sowie die cookielose Besucherstatistik Vercel
             Web Analytics.
-          </li>
-          <li>
-            <strong>Supabase</strong> — Speicherung der über das Kontaktformular eingegangenen
-            Anfragen.
           </li>
           <li>
             <strong>Resend</strong> — Versand der Benachrichtigung über eine neue Anfrage an das

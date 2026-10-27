@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
-import { supabaseServer } from '@/lib/supabase';
 import { baueBenachrichtigung } from '@/lib/kontaktmail';
 
 export const runtime = 'nodejs';
@@ -61,6 +60,10 @@ function fehlermeldung(fehler: z.ZodError): string {
     : (PFLICHTFELD_MELDUNG[feld] ?? 'Bitte prüfen Sie Ihre Eingaben.');
 }
 
+const NICHT_ZUGESTELLT =
+  'Die Anfrage konnte nicht übermittelt werden. Bitte versuchen Sie es später erneut ' +
+  'oder wenden Sie sich direkt an eine der aufgeführten Ansprechpersonen.';
+
 export async function POST(request: Request) {
   let rohdaten: unknown;
 
@@ -83,68 +86,49 @@ export async function POST(request: Request) {
   // Der Honigtopf hat seinen Zweck erfuellt und wird nicht weiterverarbeitet.
   const anfrage = ergebnis.data;
 
-  // ── 1. In Supabase speichern ──────────────────────────────────────────────
-  let anfrageId: string;
+  // ── Vermarktungsteam benachrichtigen ──────────────────────────────────────
+  // Die Anfrage wird nirgends gespeichert, die Mail ist ihr einziger Weg zum
+  // Team. Kommt sie nicht an, erfährt das der Absender deshalb sofort, statt
+  // eine Bestätigung für eine verlorene Anfrage zu sehen.
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  // Die neueren Projektwebseiten verwenden VON/AN — beide Schreibweisen gelten.
+  const from = (process.env.KONTAKT_MAIL_FROM ?? process.env.KONTAKT_MAIL_VON)?.trim();
+  const to = (process.env.KONTAKT_MAIL_TO ?? process.env.KONTAKT_MAIL_AN)
+    ?.split(/[,;]/)
+    .map((adresse) => adresse.trim())
+    .filter(Boolean);
 
-  try {
-    const supabase = supabaseServer();
-    const { data, error } = await supabase
-      .from('kontaktanfragen')
-      .insert({
-        name: anfrage.name,
-        email: anfrage.email,
-        telefon: anfrage.telefon || null,
-        wohnung: anfrage.wohnung || null,
-        thema: anfrage.thema || null,
-        nachricht: anfrage.nachricht,
-        quelle: anfrage.quelle || null,
-      })
-      .select('id')
-      .single();
-
-    if (error) throw error;
-    anfrageId = data.id;
-  } catch (fehler) {
-    console.error('[kontakt] Speichern in Supabase fehlgeschlagen:', fehler);
-    return NextResponse.json(
-      {
-        fehler:
-          'Die Anfrage konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut ' +
-          'oder wenden Sie sich direkt an eine der aufgeführten Ansprechpersonen.',
-      },
-      { status: 500 },
+  if (!apiKey || !from || !to?.length) {
+    console.error(
+      '[kontakt] Mailversand nicht eingerichtet: RESEND_API_KEY, KONTAKT_MAIL_FROM ' +
+        'oder KONTAKT_MAIL_TO fehlt.',
     );
+    return NextResponse.json({ fehler: NICHT_ZUGESTELLT }, { status: 503 });
   }
 
-  // ── 2. Vermarktungsteam benachrichtigen ───────────────────────────────────
-  // Schlägt der Mailversand fehl, gilt die Anfrage trotzdem als angenommen —
-  // sie liegt bereits in der Datenbank und geht nicht verloren.
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.KONTAKT_MAIL_FROM;
-  const to = process.env.KONTAKT_MAIL_TO;
+  try {
+    const mail = baueBenachrichtigung(anfrage);
 
-  if (apiKey && from && to) {
-    try {
-      const mail = baueBenachrichtigung(anfrage);
+    // Resend wirft bei einer Ablehnung keinen Fehler, sondern meldet ihn im
+    // Rückgabewert — deshalb muss `error` ausdrücklich geprüft werden.
+    const { error } = await new Resend(apiKey).emails.send({
+      from,
+      to,
+      // Antworten gehen direkt an die anfragende Person, nicht an die
+      // Absenderadresse der Webseite.
+      replyTo: anfrage.email,
+      subject: mail.subject,
+      html: mail.html,
+      text: mail.text,
+    });
 
-      await new Resend(apiKey).emails.send({
-        from,
-        to: to.split(',').map((adresse) => adresse.trim()),
-        // Antworten gehen direkt an die anfragende Person, nicht an die
-        // Absenderadresse der Webseite.
-        replyTo: anfrage.email,
-        subject: mail.subject,
-        html: mail.html,
-        text: mail.text,
-      });
-
-      await supabaseServer()
-        .from('kontaktanfragen')
-        .update({ mail_versandt: true })
-        .eq('id', anfrageId);
-    } catch (fehler) {
-      console.error('[kontakt] Benachrichtigung konnte nicht versendet werden:', fehler);
+    if (error) {
+      console.error(`[kontakt] Resend hat die Mail abgelehnt (${error.name}): ${error.message}`);
+      return NextResponse.json({ fehler: NICHT_ZUGESTELLT }, { status: 502 });
     }
+  } catch (fehler) {
+    console.error('[kontakt] Benachrichtigung konnte nicht versendet werden:', fehler);
+    return NextResponse.json({ fehler: NICHT_ZUGESTELLT }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

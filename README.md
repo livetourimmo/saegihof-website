@@ -4,7 +4,7 @@ Projektwebseite für die 32 Eigentumswohnungen im Sägihof, Therwil.
 Vermarktung: welcome Home Immobilien.
 
 Gebaut mit **Next.js 15** (App Router), gehostet auf **Vercel**, Kontaktanfragen
-landen in **Supabase**.
+kommen per Mail über **Resend** an.
 
 ---
 
@@ -54,8 +54,6 @@ components/
   ScrollEffects.tsx    Navigationsleiste beim Scrollen + Einblend-Animationen
   Icons.tsx            Inline-Symbole
 
-lib/supabase.ts        Supabase-Client (nur serverseitig)
-supabase/schema.sql    Datenbankschema — einmalig im SQL-Editor ausführen
 public/img/            Bilder
 ```
 
@@ -91,33 +89,19 @@ Reihenfolge. Betroffene Stellen sind im CSS kommentiert.
 
 ---
 
-## Einrichtung Supabase
-
-1. Projekt auf [supabase.com](https://supabase.com) anlegen (Region: Frankfurt/EU).
-2. Im **SQL Editor** den Inhalt von `supabase/schema.sql` ausführen.
-3. Unter **Project Settings → API** holen:
-   - Project URL → `SUPABASE_URL`
-   - `service_role`-Key → `SUPABASE_SERVICE_ROLE_KEY`
-
-> **Wichtig:** Der `service_role`-Key umgeht die Zugriffsregeln der Datenbank.
-> Er gehört ausschliesslich in die Server-Umgebungsvariablen, niemals in den
-> Browser-Code und niemals ins Repository. Deshalb trägt er bewusst **kein**
-> `NEXT_PUBLIC_`-Präfix.
-
-Row Level Security ist eingeschaltet, es ist aber **keine** Zugriffsregel
-angelegt. Damit kann über den öffentlichen Schlüssel niemand die Anfragen
-auslesen. Einsehbar sind sie im Supabase-Dashboard unter *Table Editor →
-kontaktanfragen*.
-
 ## Einrichtung E-Mail-Benachrichtigung
 
 1. Konto bei [resend.com](https://resend.com) anlegen, Absenderdomain verifizieren.
 2. API-Key erzeugen → `RESEND_API_KEY`
 3. `KONTAKT_MAIL_FROM` und `KONTAKT_MAIL_TO` setzen (mehrere Empfänger mit Komma).
 
-Fehlen diese drei Werte, funktioniert das Formular trotzdem — die Anfrage wird
-gespeichert, es geht nur keine Benachrichtigung raus. Schlägt der Mailversand
-fehl, bleibt die Anfrage ebenfalls erhalten.
+Die Anfragen werden nirgends gespeichert, die Mail ist ihr einziger Weg zum
+Team. Fehlt einer der drei Werte oder lehnt Resend den Versand ab, zeigt das
+Formular deshalb eine Fehlermeldung statt einer Bestätigung. Die Ursache steht
+in den Vercel-Logs unter `[kontakt]`.
+
+Statt `KONTAKT_MAIL_FROM`/`KONTAKT_MAIL_TO` werden auch die Namen der neueren
+Projektwebseiten `KONTAKT_MAIL_VON`/`KONTAKT_MAIL_AN` gelesen.
 
 ---
 
