@@ -6,8 +6,9 @@ import { useEinwilligung } from './Einwilligung';
 import { META_PIXEL_ID, metaBefehl } from '@/lib/analytics';
 
 /**
- * Meta-Pixel (Facebook/Instagram) — wie Google Analytics ausschliesslich nach
- * ausdrücklicher Zustimmung.
+ * Meta-Pixel (Facebook/Instagram) — ausschliesslich nach ausdrücklicher
+ * Zustimmung. (Anders als Google Analytics, das im Einwilligungsmodus immer
+ * geladen wird, kennt der Pixel hier keinen cookielosen Betrieb.)
  *
  * Der von Meta gelieferte Code wird hier in drei Teile zerlegt:
  *

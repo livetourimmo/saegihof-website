@@ -5,6 +5,7 @@ import ScrollEffects from '@/components/ScrollEffects';
 import { EinwilligungProvider } from '@/components/Einwilligung';
 import Cookiebanner from '@/components/Cookiebanner';
 import Analyse from '@/components/Analyse';
+import GoogleTag from '@/components/GoogleTag';
 import MetaPixel from '@/components/MetaPixel';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
@@ -75,6 +76,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${jost.variable} ${ibmPlexSans.variable}`}>
+      <head>
+        {/* Google Analytics im Einwilligungsmodus: Tag immer im <head>, ohne
+            Zustimmung ohne Cookies. Nur mit NEXT_PUBLIC_GA_ID (Production). */}
+        <GoogleTag />
+      </head>
       <body>
         <EinwilligungProvider>
           {children}

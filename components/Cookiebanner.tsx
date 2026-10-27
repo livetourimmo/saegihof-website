@@ -28,10 +28,12 @@ export default function Cookiebanner() {
           </p>
           <p>
             Für den Betrieb dieser Webseite ist nichts davon nötig. Mit Ihrer Zustimmung messen wir
-            die Nutzung mit Google Analytics, messen den Erfolg unserer Werbung mit dem Meta-Pixel
-            (Facebook/Instagram) und laden den Wohnungsnavigator, den virtuellen
-            Rundgang sowie die Umgebungskarte von den Servern ihrer Anbieter. Lehnen Sie ab, werden weder Cookies
-            gesetzt noch Daten an Dritte übertragen. Näheres in der{' '}
+            die Nutzung mit Google Analytics und Cookies, messen den Erfolg unserer Werbung mit dem
+            Meta-Pixel (Facebook/Instagram) und laden den Wohnungsnavigator, den virtuellen
+            Rundgang sowie die Umgebungskarte von den Servern ihrer Anbieter. Lehnen Sie ab, werden
+            keine Cookies gesetzt; Google Analytics läuft dann nur eingeschränkt im
+            Einwilligungsmodus und erhält dabei Ihre IP-Adresse, aber nur cookielose Signale.
+            Näheres in der{' '}
             <Link href="/datenschutz">Datenschutzerklärung</Link>.
           </p>
         </div>

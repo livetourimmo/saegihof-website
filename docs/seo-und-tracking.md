@@ -1,6 +1,6 @@
 # SEO und Messung – Sägihof Therwil
 
-Stand: 22.09.2026.
+Stand: 27.10.2026.
 
 ## Geprüfter Ausgangsstand
 
@@ -33,8 +33,10 @@ Darstellung bei Google. Sichtbare Überschriften konkretisieren Angebot und Ort.
 
 GA4 erhält nach erfolgreicher Kontaktanfrage das empfohlene Ereignis
 `generate_lead`, mit `form_name=kontaktformular` und `form_source` (Herkunftsseite).
-Es werden keine Formularinhalte an Google übertragen. Fehlgeschlagene Anfragen,
-Honigtopf-Einträge und Anfragen ohne Analyse-Einwilligung werden nicht gezählt.
+Es werden keine Formularinhalte an Google übertragen. Fehlgeschlagene Anfragen
+und Honigtopf-Einträge werden nicht gezählt. Seit dem Einwilligungsmodus (siehe
+unten) geht `generate_lead` auch ohne Analyse-Einwilligung an Google, dann als
+cookieloses Signal.
 Die Einwilligungsbefehle verwenden nun das von gtag.js erwartete Arguments-Format.
 Ein unmittelbarer Doppelklick löst keine zweite Anfrage aus. Der vorhandene
 Honigtopf wird jetzt auch tatsächlich an den Server übergeben.
@@ -58,6 +60,32 @@ SEO-Titel funktionieren auch ohne Analytics und ohne Search Console.
 Google muss die Seiten neu crawlen und kann Titel/Beschreibung selbst umformulieren.
 
 ## Google Analytics
+
+### Einwilligungsmodus (Consent Mode v2, Stand 27.10.2026)
+
+- `components/GoogleTag.tsx` gibt im `<head>` des Root-Layouts ein Inline-Skript
+  und `gtag/js?id=<NEXT_PUBLIC_GA_ID>` aus — immer, sofern die Mess-ID gesetzt
+  ist (Googles Tag-Test findet es so im initialen HTML).
+- Vor dem Laden: `gtag('consent','default',…)` mit `ad_storage`, `ad_user_data`,
+  `ad_personalization` immer `denied`; `analytics_storage` ist `granted` nur, wenn
+  im localStorage `saegihof-einwilligung-v2 = alle` steht, sonst `denied`;
+  `wait_for_update: 500`. Danach `gtag('js')` und genau ein `gtag('config', ID)`
+  (ohne weitere Optionen, wie zuvor bei `@next/third-parties`).
+- Ohne Zustimmung: keine `_ga`-Cookies, nur cookielose Signale (`gcs=G100`).
+- `components/Analyse.tsx` meldet Änderungen: «Alle akzeptieren» →
+  `consent update analytics_storage granted`; Widerruf über «Cookie-Einstellungen»
+  → `denied` und `analyseCookiesLoeschen()` (`lib/analytics.ts`) löscht `_ga` und
+  `_ga_<ID>` auf Host- und Oberdomains. Der frühere Schalter `ga-disable-<ID>` ist
+  entfallen, weil er auch die cookielosen Signale unterdrücken würde.
+- Production-only bleibt: `NEXT_PUBLIC_GA_ID` ist in Vercel nur für Production
+  gesetzt. Ohne ID wird weder Tag noch Inline-Skript ausgegeben, und
+  `generate_lead` wird nicht gesendet.
+- Meta-Pixel und Einbettungen sind davon unberührt: weiterhin erst nach Zustimmung.
+- `@next/third-parties` wird nicht mehr importiert (Paket noch in `package.json`).
+- Prüfen: im Live-HTML `googletagmanager.com/gtag/js` und `'consent', 'default'`
+  suchen; Google Tag Assistant zeigt den Consent-Status.
+
+### Einrichtung
 
 1. In GA4 den Web-Datenstream `G-Q9472FVECF` zuordnen und dessen URL prüfen.
 2. Nach Veröffentlichung eine kontrollierte Anfrage mit Zustimmung testen;
@@ -83,7 +111,7 @@ alternative Wege; dieselbe Anfrage nicht zweimal als primäre Conversion zählen
 - **Direkter Ads-Tag:** benötigt Conversion-ID `AW-…`, Conversion-Label und eine
   passende Werbe-Einwilligung. Dieser Tag ist derzeit nicht eingebaut.
 
-Wichtig: Die vorhandene Zustimmung gilt für Analytics und Fremdinhalte.
+Wichtig: Die vorhandene Zustimmung gilt für Analytics-Cookies, Meta-Pixel und Fremdinhalte.
 `ad_storage`, `ad_user_data` und `ad_personalization` bleiben im Code abgelehnt.
 Das wurde nicht stillschweigend zu einer Werbeeinwilligung erweitert. Für eine
 vollständige Ads-Messung muss die zuständige Agentur den gewünschten Messweg,
@@ -138,6 +166,12 @@ sonst kommen keine Daten an.
 - [Google Consent Mode](https://developers.google.com/tag-platform/security/guides/consent)
 
 ## Technische Prüfung dieser Änderung
+
+Einwilligungsmodus (27.10.2026): `npm test` (9 Tests, u.a. Inline-Skript,
+Cookie-Löschung, Lead-Parameter), Build mit Test-ID und Playwright-Ablauf vor
+Zustimmung / nach Zustimmung / Neuladen / Widerruf, Messaufrufe abgefangen.
+
+Frühere Prüfung (22.09.2026):
 
 - Produktionsbuild, ESLint, TypeScript und fünf automatisierte Tests erfolgreich.
 - Browserprüfung aller fünf Inhaltsseiten: individuelle Titel/Beschreibungen,

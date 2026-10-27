@@ -1,86 +1,50 @@
 'use client';
 
-import { useEffect } from 'react';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { useEffect, useRef } from 'react';
 import { useEinwilligung } from './Einwilligung';
-import { googleBefehl } from '@/lib/analytics';
+import { analyseCookiesLoeschen, googleBefehl } from '@/lib/analytics';
 
 /**
- * Mess-ID aus der Umgebung. Fehlt sie — etwa in einer lokalen Umgebung ohne
- * .env.local —, wird die Messung gar nicht erst eingebunden.
+ * Mess-ID aus der Umgebung. Fehlt sie — in Vorschauen und lokal ohne
+ * .env.local —, ist auch das Google-Tag nicht eingebunden (components/GoogleTag.tsx).
  *
  * Der Zugriff steht bewusst ausgeschrieben da: Next.js ersetzt
  * `process.env.NEXT_PUBLIC_...` beim Übersetzen als Zeichenkette im Quelltext.
- * Ein dynamischer Zugriff wie process.env[name] würde dabei nicht ersetzt und
- * liefe ins Leere.
  */
 const MESS_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-/* `window.dataLayer` ist bereits von @next/third-parties deklariert; eine
-   eigene Deklaration würde damit kollidieren. */
-
 /**
- * Meldet dem Consent Mode von Google den Ausgangszustand: Messung abgelehnt.
+ * Google Analytics 4 im Einwilligungsmodus (Consent Mode v2).
  *
- * Das läuft, sobald die Seite im Browser ankommt, und damit lange bevor
- * überhaupt ein Google-Skript geladen werden könnte. Die Einträge sammeln sich
- * in `dataLayer` an; wird nie zugestimmt, bleibt es bei einem Array, das
- * niemand ausliest.
- */
-function standardAufAbgelehnt() {
-  if (typeof window === 'undefined') return;
-  googleBefehl(
-    'consent',
-    'default',
-    {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-    },
-  );
-}
-
-/**
- * Google Analytics 4 — ausschliesslich nach ausdrücklicher Zustimmung.
+ * Das Google-Tag selbst steht im <head> (components/GoogleTag.tsx) und
+ * startet mit „denied“ für alle Speicherarten, ausser der Besucher hat schon
+ * früher zugestimmt. Diese Komponente meldet Google nur Änderungen der Wahl:
  *
- * Der entscheidende Punkt ist, dass hier ohne Zustimmung **nichts** gerendert
- * wird. `GoogleAnalytics` fügt das gtag-Skript als Element in den Baum ein;
- * was nicht im Baum steht, wird auch nicht geladen. Es entstehen dadurch weder
- * Cookies noch Verbindungen zu Google. Ein Banner, das die Messung nur
- * nachträglich abschaltet, hätte diese Wirkung nicht.
+ *  • Zustimmung → analytics_storage 'granted'; Google darf Cookies setzen.
+ *  • Ablehnung oder Widerruf → 'denied', und die bereits gesetzten
+ *    Analytics-Cookies (_ga, _ga_<ID>) werden gelöscht.
  *
- * Zusätzlich wird der Consent Mode bedient: erst der Standard „abgelehnt“,
- * nach der Zustimmung ein „granted“ für die Messung. Werbebezogene
- * Einwilligungen bleiben abgelehnt — Werbefunktionen setzt diese Webseite
- * nicht ein.
+ * Werbebezogene Speicherarten bleiben immer abgelehnt — Werbefunktionen von
+ * Google setzt diese Webseite nicht ein.
  */
 export default function Analyse() {
   const { analyseErlaubt } = useEinwilligung();
-
-  // Beim ersten Aufbau steht die Wahl immer auf 'unbekannt' — die Messung ist
-  // zu diesem Zeitpunkt also garantiert nicht gerendert. Der Standard landet
-  // damit sicher vor jedem Google-Skript in der Warteschlange.
-  useEffect(() => {
-    standardAufAbgelehnt();
-  }, []);
+  // Der erste Aufbau läuft immer mit „nicht erlaubt“, weil die gespeicherte
+  // Wahl erst danach aus dem localStorage gelesen wird. Diesen Ausgangswert
+  // hat das Inline-Skript im <head> bereits richtig gesetzt; gemeldet werden
+  // nur echte Änderungen, sonst schwänke der Status kurz auf „denied“.
+  const vorher = useRef(analyseErlaubt);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !MESS_ID) return;
+    if (!MESS_ID || vorher.current === analyseErlaubt) return;
+    vorher.current = analyseErlaubt;
 
-    googleBefehl(
-      'consent',
-      'update',
-      { analytics_storage: analyseErlaubt ? 'granted' : 'denied' },
-    );
+    googleBefehl('consent', 'update', {
+      analytics_storage: analyseErlaubt ? 'granted' : 'denied',
+    });
 
-    // Beim Widerruf reicht es nicht, das Skript-Element zu entfernen: gtag.js
-    // ist dann längst ausgeführt und liefe bis zum nächsten Seitenaufbau
-    // weiter. Dieser von Google vorgesehene Schalter hält es sofort an.
-    (window as unknown as Record<string, boolean>)[`ga-disable-${MESS_ID}`] = !analyseErlaubt;
+    if (!analyseErlaubt) analyseCookiesLoeschen();
   }, [analyseErlaubt]);
 
-  if (!MESS_ID || !analyseErlaubt) return null;
-
-  return <GoogleAnalytics gaId={MESS_ID} />;
+  return null;
 }

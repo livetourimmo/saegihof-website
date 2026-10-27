@@ -1,32 +1,33 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { SPEICHERSCHLUESSEL } from '@/lib/einwilligung';
 
 /**
  * Einwilligung in alles, was über den reinen Seitenbetrieb hinausgeht.
  *
- * Zwei Dinge hängen daran, und beide sind ohne Zustimmung vollständig aus:
+ * Daran hängen:
  *
  *  • **Fremde Inhalte** — Wohnungsnavigator, Rundgang und Umgebungskarte werden von den
- *    Servern ihrer Anbieter geladen, die dabei die IP-Adresse erfahren.
- *  • **Reichweitenmessung** — Google Analytics 4 und Meta-Pixel. Die Skripte werden gar nicht
- *    erst eingebunden, solange keine Zustimmung vorliegt; ohne Skript gibt es
- *    weder Cookies noch übertragene Messdaten.
+ *    Servern ihrer Anbieter geladen, die dabei die IP-Adresse erfahren. Ohne
+ *    Zustimmung vollständig aus.
+ *  • **Meta-Pixel** — wird gar nicht erst eingebunden, solange keine Zustimmung
+ *    vorliegt; ohne Skript gibt es weder Cookies noch übertragene Messdaten.
+ *  • **Google Analytics 4** — läuft im Einwilligungsmodus (Consent Mode v2):
+ *    Das Google-Tag lädt immer (components/GoogleTag.tsx), setzt ohne
+ *    Zustimmung aber keine Cookies und sendet nur cookielose Signale. Erst mit
+ *    Zustimmung gibt components/Analyse.tsx die Analytics-Cookies frei.
  *
  * Die Wahl liegt im localStorage und nicht in einem Cookie: Sie wird dadurch
  * nie an den Server übertragen.
  */
 export type Wahl = 'unbekannt' | 'notwendig' | 'alle';
 
-// Mit dem Meta-Pixel kam ein weiterer Anbieter hinzu. Der neue Schlüssel holt
-// die Zustimmung erneut ein; eine frühere Wahl kannte Meta noch nicht.
-const SPEICHERSCHLUESSEL = 'saegihof-einwilligung-v2';
-
 type Kontextwert = {
   wahl: Wahl;
   /** Dürfen Navigator, Rundgang und Karte von fremden Servern geladen werden? */
   fremdinhalteErlaubt: boolean;
-  /** Dürfen Google Analytics und der Meta-Pixel geladen werden? */
+  /** Darf der Meta-Pixel geladen werden und Google Analytics Cookies setzen? */
   analyseErlaubt: boolean;
   entscheiden: (wahl: Exclude<Wahl, 'unbekannt'>) => void;
   /** Verwirft die Wahl, sodass die Abfrage erneut erscheint. */

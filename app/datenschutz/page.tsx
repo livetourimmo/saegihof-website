@@ -52,6 +52,11 @@ export default function DatenschutzSeite() {
           werden nicht mit anderen Datenquellen zusammengeführt und nicht zur Erstellung von
           Nutzungsprofilen verwendet.
         </p>
+        <p>
+          Zusätzlich wird bei jedem Seitenaufruf das Google-Tag von Google Analytics geladen, das
+          Ihre IP-Adresse und Angaben zum Seitenaufruf an Google übermittelt; ohne Ihre Zustimmung
+          geschieht das ohne Cookies. Einzelheiten im Abschnitt zu Google Analytics 4.
+        </p>
 
         <h2>Kontaktformular</h2>
         <p>Wenn Sie das Kontaktformular verwenden, bearbeiten wir die folgenden Angaben:</p>
@@ -132,29 +137,40 @@ export default function DatenschutzSeite() {
           (<em>localStorage</em>) und nicht in einem Cookie. Sie wird dadurch nie an unseren Server
           übertragen. Über den Verweis „Cookie-Einstellungen“ in der Fusszeile können Sie die
           Abfrage jederzeit erneut öffnen und Ihre Wahl ändern. Nehmen Sie eine Zustimmung zurück,
-          werden Messung und Einbettungen unmittelbar wieder entfernt.
+          werden Meta-Pixel und Einbettungen unmittelbar wieder entfernt, Google Analytics wird auf
+          den cookielosen Betrieb zurückgestellt und seine Cookies werden gelöscht.
         </p>
         <p>
-          Solange Sie nicht zugestimmt haben, werden weder Google Analytics noch der Meta-Pixel noch eine der
-          Einbettungen geladen. Es entstehen dadurch keine Cookies dieser Anbieter, und es werden
-          keine Daten an sie übertragen.
+          Solange Sie nicht zugestimmt haben, werden weder der Meta-Pixel noch eine der
+          Einbettungen geladen; diese Anbieter erhalten dann keine Daten. Google Analytics wird im
+          Einwilligungsmodus dagegen immer geladen, setzt ohne Ihre Zustimmung aber keine Cookies
+          (siehe nächster Abschnitt).
         </p>
 
-        <h2>Reichweitenmessung mit Google Analytics 4</h2>
+        <h2>Reichweitenmessung mit Google Analytics 4 (Einwilligungsmodus)</h2>
         <p>
-          Mit Ihrer Zustimmung setzen wir Google Analytics 4 ein, einen Dienst von Google. Er hilft
-          uns zu verstehen, wie diese Webseite genutzt wird — etwa welche Seiten aufgerufen werden,
+          Wir setzen Google Analytics 4 ein, einen Dienst der Google Ireland Limited, Gordon House,
+          Barrow Street, Dublin 4, Irland, im Einwilligungsmodus von Google (<em>Consent
+          Mode</em>). Er hilft uns zu verstehen, wie diese Webseite genutzt wird — etwa welche Seiten aufgerufen werden,
           wie lange Besucherinnen und Besucher bleiben, über welchen Weg sie zu uns gefunden
           haben und ob eine Kontaktanfrage erfolgreich übermittelt wurde. Bei dieser Erfolgsmessung
           übertragen wir nur die Herkunftsseite des Formulars, keine Namen, E-Mail-Adressen,
           Telefonnummern oder Nachrichten. Wir nutzen die Auswertung ausschliesslich, um das Angebot zu verbessern.
         </p>
         <p>
-          Ohne Ihre Zustimmung wird das Analysewerkzeug nicht eingebunden. Erst danach wird es
-          geladen und setzt Cookies in Ihrem Browser, die eine wiederkehrende Sitzung erkennbar
-          machen (unter anderem <em>_ga</em> sowie ein Cookie, dessen Name die Kennung unseres
-          Datenstreams enthält). Wie lange die erhobenen Daten bei Google aufbewahrt werden, ist in
-          den Einstellungen unserer Google-Analytics-Property festgelegt.
+          Das Google-Tag wird bei jedem Seitenaufruf geladen, auch ohne Ihre Zustimmung. Dabei
+          erhält Google Ihre IP-Adresse sowie Angaben zu Browser, Gerät und aufgerufener Seite.
+          Solange Sie nicht zugestimmt haben, setzt Google keine Cookies und speichert keine
+          Kennungen in Ihrem Browser. Es werden dann nur cookielose Signale übermittelt (etwa
+          Seitenaufrufe und eine erfolgreich übermittelte Anfrage), aus denen Google die Nutzung
+          statistisch hochrechnet; einzelne Besuche werden dabei nicht wiedererkannt.
+        </p>
+        <p>
+          Erst nach Ihrer Zustimmung („Alle akzeptieren“) setzt Google Analytics Cookies in Ihrem
+          Browser, die eine wiederkehrende Sitzung erkennbar machen (unter anderem <em>_ga</em>
+          sowie ein Cookie, dessen Name die Kennung unseres Datenstreams enthält). Wie lange die
+          erhobenen Daten bei Google aufbewahrt werden, ist in den Einstellungen unserer
+          Google-Analytics-Property festgelegt.
         </p>
         <p>
           Google Analytics 4 verwendet Ihre IP-Adresse, um den ungefähren Ort des Zugriffs zu
@@ -162,14 +178,16 @@ export default function DatenschutzSeite() {
           des Europäischen Wirtschaftsraums bearbeiten, namentlich in den Vereinigten Staaten.
         </p>
         <p>
-          Wir verwenden den Einwilligungsmodus von Google (<em>Consent Mode</em>). Dessen
-          Ausgangszustand ist auf Ablehnung gesetzt und wird erst nach Ihrer ausdrücklichen
-          Zustimmung auf die Messung umgestellt. Werbebezogene Einwilligungen bleiben gegenüber
-          Google durchgehend abgelehnt — Werbefunktionen von Google setzen wir nicht ein.
+          Der Ausgangszustand des Einwilligungsmodus ist auf Ablehnung gesetzt und wird erst nach
+          Ihrer ausdrücklichen Zustimmung für Analytics-Cookies freigegeben. Werbebezogene
+          Einwilligungen bleiben gegenüber Google durchgehend abgelehnt — Werbefunktionen von
+          Google setzen wir nicht ein.
         </p>
         <p>
           Sie können Ihre Zustimmung jederzeit über „Cookie-Einstellungen“ in der Fusszeile
-          zurücknehmen. Die Messung wird dann sofort beendet.
+          zurücknehmen. Google Analytics setzt dann keine Cookies mehr, die bereits gesetzten
+          Analytics-Cookies werden gelöscht, und es werden wieder nur cookielose Signale
+          übermittelt.
         </p>
 
         <h2>Werbeerfolgsmessung mit dem Meta-Pixel</h2>
