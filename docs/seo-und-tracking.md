@@ -92,6 +92,28 @@ prüfen. Ein GA4-Import allein ersetzt diese Prüfung nicht; bei verweigerten
 Werbesignalen kann die Attribution eingeschränkt sein. Keine Remarketing-
 Zielgruppen oder erweiterten Conversions mit Kontaktdaten wurden eingerichtet.
 
+## Meta-Pixel (Stand 27.10.2026)
+
+- Pixel-ID `1148014414837372` (in `lib/analytics.ts`, überschreibbar mit
+  `NEXT_PUBLIC_META_PIXEL_ID`). Aktiv nur bei `NEXT_PUBLIC_VERCEL_ENV=production`
+  (setzt Vercel automatisch) und nur nach «Alle akzeptieren».
+- Ereignisse: `PageView` bei jedem Seitenwechsel (auch ohne Neuladen) und
+  `Lead` nach erfolgreicher Kontaktanfrage, ohne Formularinhalte.
+- Der `<noscript>`-Bildpixel aus der Meta-Vorlage ist bewusst nicht eingebaut:
+  er würde ohne Einwilligung feuern.
+- Widerruf über «Cookie-Einstellungen» sendet `fbq('consent','revoke')`.
+- Der Speicherschlüssel der Einwilligung wurde auf `saegihof-einwilligung-v2`
+  erhöht, damit alle Besucher einmal neu gefragt werden (Meta ist neu genannt).
+- Prüfen im Events Manager → Testereignisse bzw. mit dem Meta Pixel Helper.
+  Domain `saegihof-therwil.ch` im Business Manager verifizieren und Lead als
+  Conversion-Ereignis für Kampagnen auswählen.
+
+## Vercel Web Analytics
+
+`<Analytics />` aus `@vercel/analytics/next` im Root-Layout. Cookielos, daher
+ohne Einwilligung. Im Vercel-Projekt unter **Analytics → Enable** aktivieren,
+sonst kommen keine Daten an.
+
 ## Weitere sinnvolle SEO-Arbeit
 
 - Einzelne Wohnungen sind derzeit in einem fremden iframe. Für gezielte

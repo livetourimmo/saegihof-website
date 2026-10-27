@@ -62,3 +62,15 @@ test('Missing measurement ID and server rendering produce no event', () => {
   assert.doesNotThrow(() => c.exports.messeKontaktanfrage('wohnungen'));
   assert.doesNotThrow(() => c.exports.googleBefehl('consent', 'default', {}));
 });
+
+test('Meta lead goes only to a loaded pixel and without form contents', () => {
+  const c = setup('');
+  c.exports.messeKontaktanfrage('wohnungen');
+  const calls = [];
+  c.window.fbq = (...args) => calls.push(args);
+  c.exports.messeKontaktanfrage('wohnungen');
+  assert.equal(calls.length, 1);
+  assert.deepEqual(JSON.parse(JSON.stringify(calls[0])), [
+    'track', 'Lead', { content_name: 'kontaktformular', content_category: 'wohnungen' },
+  ]);
+});

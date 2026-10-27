@@ -80,7 +80,8 @@ export default function DatenschutzSeite() {
         <ul>
           <li>
             <strong>Vercel</strong> — Hosting und Auslieferung der Webseite, einschliesslich der
-            oben beschriebenen Verbindungsdaten.
+            oben beschriebenen Verbindungsdaten, sowie die cookielose Besucherstatistik Vercel
+            Web Analytics.
           </li>
           <li>
             <strong>Supabase</strong> — Speicherung der über das Kontaktformular eingegangenen
@@ -138,7 +139,7 @@ export default function DatenschutzSeite() {
           werden Messung und Einbettungen unmittelbar wieder entfernt.
         </p>
         <p>
-          Solange Sie nicht zugestimmt haben, wird weder das Analysewerkzeug noch eine der
+          Solange Sie nicht zugestimmt haben, werden weder Google Analytics noch der Meta-Pixel noch eine der
           Einbettungen geladen. Es entstehen dadurch keine Cookies dieser Anbieter, und es werden
           keine Daten an sie übertragen.
         </p>
@@ -167,12 +168,50 @@ export default function DatenschutzSeite() {
         <p>
           Wir verwenden den Einwilligungsmodus von Google (<em>Consent Mode</em>). Dessen
           Ausgangszustand ist auf Ablehnung gesetzt und wird erst nach Ihrer ausdrücklichen
-          Zustimmung auf die Messung umgestellt. Werbebezogene Einwilligungen bleiben durchgehend
-          abgelehnt — Werbefunktionen und Zielgruppenbildung für Werbung setzen wir nicht ein.
+          Zustimmung auf die Messung umgestellt. Werbebezogene Einwilligungen bleiben gegenüber
+          Google durchgehend abgelehnt — Werbefunktionen von Google setzen wir nicht ein.
         </p>
         <p>
           Sie können Ihre Zustimmung jederzeit über „Cookie-Einstellungen“ in der Fusszeile
           zurücknehmen. Die Messung wird dann sofort beendet.
+        </p>
+
+        <h2>Werbeerfolgsmessung mit dem Meta-Pixel</h2>
+        <p>
+          Mit Ihrer Zustimmung setzen wir den Meta-Pixel ein, einen Dienst der Meta Platforms
+          Ireland Ltd., Merrion Road, Dublin 4, Irland (Facebook, Instagram). Er hilft uns zu
+          erkennen, ob unsere Anzeigen auf Facebook und Instagram zu Besuchen und Anfragen auf
+          dieser Webseite führen, und unsere Werbung gezielter auszuspielen. Dazu werden
+          aufgerufene Seiten und eine erfolgreich übermittelte Kontaktanfrage an Meta gemeldet.
+          Bei der Anfrage übertragen wir nur die Herkunftsseite des Formulars, keine Namen,
+          E-Mail-Adressen, Telefonnummern oder Nachrichten.
+        </p>
+        <p>
+          Nach Ihrer Zustimmung wird das Skript von Meta geladen. Es setzt Cookies (unter anderem
+          <em> _fbp</em>) und überträgt Ihre IP-Adresse sowie Angaben zu Browser und Gerät an
+          Meta. Sind Sie bei Facebook oder Instagram angemeldet, kann Meta den Besuch Ihrem Konto
+          zuordnen. Meta kann die Daten auch ausserhalb der Schweiz und des Europäischen
+          Wirtschaftsraums bearbeiten, namentlich in den Vereinigten Staaten. Für die gemeinsame
+          Erhebung sind wir und Meta gemeinsam verantwortlich; die weitere Bearbeitung erfolgt in
+          der Verantwortung von Meta, siehe{' '}
+          <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">
+            Datenschutzrichtlinie von Meta
+          </a>
+          .
+        </p>
+        <p>
+          Ohne Ihre Zustimmung wird der Meta-Pixel nicht eingebunden. Nehmen Sie Ihre Zustimmung
+          über „Cookie-Einstellungen“ zurück, wird die Übertragung an Meta sofort beendet.
+        </p>
+
+        <h2>Statistik mit Vercel Web Analytics</h2>
+        <p>
+          Für eine einfache Besucherstatistik nutzen wir Vercel Web Analytics unserer
+          Hosting-Anbieterin Vercel (siehe oben). Dabei
+          werden aufgerufene Seiten, Herkunftsseite, Land sowie Browser-, Betriebssystem- und
+          Gerätetyp erfasst. Es werden keine Cookies gesetzt und keine IP-Adressen gespeichert;
+          Besuche werden über einen täglich wechselnden, nicht rückführbaren Wert gezählt. Eine
+          Wiedererkennung über mehrere Tage oder Webseiten hinweg findet nicht statt.
         </p>
 
         <h2>Aufbewahrung</h2>

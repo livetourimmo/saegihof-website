@@ -9,7 +9,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
  *
  *  • **Fremde Inhalte** — Wohnungsnavigator, Rundgang und Umgebungskarte werden von den
  *    Servern ihrer Anbieter geladen, die dabei die IP-Adresse erfahren.
- *  • **Reichweitenmessung** — Google Analytics 4. Das Skript wird gar nicht
+ *  • **Reichweitenmessung** — Google Analytics 4 und Meta-Pixel. Die Skripte werden gar nicht
  *    erst eingebunden, solange keine Zustimmung vorliegt; ohne Skript gibt es
  *    weder Cookies noch übertragene Messdaten.
  *
@@ -18,13 +18,15 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
  */
 export type Wahl = 'unbekannt' | 'notwendig' | 'alle';
 
-const SPEICHERSCHLUESSEL = 'saegihof-einwilligung';
+// Mit dem Meta-Pixel kam ein weiterer Anbieter hinzu. Der neue Schlüssel holt
+// die Zustimmung erneut ein; eine frühere Wahl kannte Meta noch nicht.
+const SPEICHERSCHLUESSEL = 'saegihof-einwilligung-v2';
 
 type Kontextwert = {
   wahl: Wahl;
   /** Dürfen Navigator, Rundgang und Karte von fremden Servern geladen werden? */
   fremdinhalteErlaubt: boolean;
-  /** Darf Google Analytics geladen werden? */
+  /** Dürfen Google Analytics und der Meta-Pixel geladen werden? */
   analyseErlaubt: boolean;
   entscheiden: (wahl: Exclude<Wahl, 'unbekannt'>) => void;
   /** Verwirft die Wahl, sodass die Abfrage erneut erscheint. */
