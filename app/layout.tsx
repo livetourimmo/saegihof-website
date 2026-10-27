@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SEO, SITE_URL } from '@/lib/seo';
-import { Jost, IBM_Plex_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import ScrollEffects from '@/components/ScrollEffects';
 import { EinwilligungProvider } from '@/components/Einwilligung';
 import Cookiebanner from '@/components/Cookiebanner';
@@ -13,11 +13,22 @@ import './globals.css';
  * Die Schriften werden von Next.js selbst ausgeliefert. Dadurch entfällt der
  * externe Aufruf bei Google Fonts. Die Schnitte entsprechen denen, die in den
  * ursprünglichen HTML-Dateien geladen wurden.
+ * Lokal aus @fontsource-variable statt next/font/google: Der Abruf bei Google
+ * ist im Vercel-Build (Turbopack) bei anderen Projektseiten gescheitert.
  */
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['200', '300', '400', '500', '600'],
-  style: ['normal', 'italic'],
+const jost = localFont({
+  src: [
+    {
+      path: '../node_modules/@fontsource-variable/jost/files/jost-latin-wght-normal.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+    {
+      path: '../node_modules/@fontsource-variable/jost/files/jost-latin-wght-italic.woff2',
+      weight: '100 900',
+      style: 'italic',
+    },
+  ],
   variable: '--font-jost',
   display: 'swap',
   // Ohne die von Next.js erzeugte Ersatzfamilie: sie veraendert die Hoehe von
@@ -25,10 +36,19 @@ const jost = Jost({
   adjustFontFallback: false,
 });
 
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  style: ['normal', 'italic'],
+const ibmPlexSans = localFont({
+  src: [
+    {
+      path: '../node_modules/@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2',
+      weight: '100 700',
+      style: 'normal',
+    },
+    {
+      path: '../node_modules/@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-italic.woff2',
+      weight: '100 700',
+      style: 'italic',
+    },
+  ],
   variable: '--font-ibm-plex-sans',
   display: 'swap',
   adjustFontFallback: false,
