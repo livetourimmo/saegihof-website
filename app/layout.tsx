@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${jost.variable} ${ibmPlexSans.variable}`}>
+    <html lang="de-CH" className={`${jost.variable} ${ibmPlexSans.variable}`}>
       <head>
         {/* Google Analytics im Einwilligungsmodus: Tag immer im <head>, ohne
             Zustimmung ohne Cookies. Nur mit NEXT_PUBLIC_GA_ID (Production). */}
