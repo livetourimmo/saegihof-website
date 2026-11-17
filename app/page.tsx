@@ -13,10 +13,10 @@ function Bezugsplakette() {
     <Link
       href="/wohnungen"
       className="hero-bezug"
-      aria-label="Bezug ab Mitte 2028 – Wohnungen entdecken"
+      aria-label="Bezug ab Ende 2028 – Wohnungen entdecken"
     >
       <span className="hero-bezug-label">Bezug ab</span>
-      <span className="hero-bezug-zeit">Mitte</span>
+      <span className="hero-bezug-zeit">Ende</span>
       <span className="hero-bezug-jahr">2028</span>
     </Link>
   );
