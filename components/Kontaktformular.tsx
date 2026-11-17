@@ -59,7 +59,7 @@ export default function Kontaktformular({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          website: daten.get('website'),
+          zusatzfeld: daten.get('zusatzfeld'),
           name: daten.get('name'),
           email: daten.get('email'),
           telefon: daten.get('telefon') || null,
@@ -76,7 +76,7 @@ export default function Kontaktformular({
       }
 
       setStatus('gesendet');
-      if (!daten.get('website')) {
+      if (!daten.get('zusatzfeld')) {
         // Ein Messfehler darf eine erfolgreich gespeicherte Anfrage nie als
         // fehlgeschlagen darstellen und damit eine zweite Einsendung auslösen.
         try { messeKontaktanfrage(quelle); } catch { /* Messung ist optional. */ }
@@ -159,8 +159,8 @@ export default function Kontaktformular({
 
       {/* Honigtopf gegen automatisierte Einträge — für Menschen unsichtbar. */}
       <div className="form-honigtopf" aria-hidden="true">
-        <label htmlFor="f-website">Bitte nicht ausfüllen</label>
-        <input type="text" id="f-website" name="website" tabIndex={-1} autoComplete="off" />
+        <label htmlFor="f-zusatzfeld">Bitte nicht ausfüllen</label>
+        <input type="text" id="f-zusatzfeld" name="zusatzfeld" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="form-check">

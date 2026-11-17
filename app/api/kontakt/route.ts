@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { baueBenachrichtigung } from '@/lib/kontaktmail';
+import { anfragePruefen, jsonLesen } from '@/lib/anfrage-schutz';
 
 export const runtime = 'nodejs';
 
@@ -28,7 +29,7 @@ const AnfrageSchema = z.object({
     .max(5000, 'Die Nachricht ist zu lang.'),
   quelle: z.string().trim().max(40).nullish(),
   // Honigtopf: von Menschen nie ausgefüllt, von Bots oft schon.
-  website: z.string().max(0).optional(),
+  zusatzfeld: z.string().max(0).optional(),
 });
 
 /**
@@ -65,10 +66,13 @@ const NICHT_ZUGESTELLT =
   'oder wenden Sie sich direkt an eine der aufgeführten Ansprechpersonen.';
 
 export async function POST(request: Request) {
+  const sperre = anfragePruefen(request);
+  if (sperre) return NextResponse.json({ fehler: sperre.fehler }, { status: sperre.status });
+
   let rohdaten: unknown;
 
   try {
-    rohdaten = await request.json();
+    rohdaten = await jsonLesen(request);
   } catch {
     return NextResponse.json({ fehler: 'Ungültige Anfrage.' }, { status: 400 });
   }
@@ -77,7 +81,7 @@ export async function POST(request: Request) {
 
   if (!ergebnis.success) {
     // Honigtopf gefüllt: still bestätigen, damit der Bot keinen Hinweis bekommt.
-    if (ergebnis.error.issues.some((i) => i.path[0] === 'website')) {
+    if (ergebnis.error.issues.some((i) => i.path[0] === 'zusatzfeld')) {
       return NextResponse.json({ ok: true });
     }
     return NextResponse.json({ fehler: fehlermeldung(ergebnis.error) }, { status: 400 });
